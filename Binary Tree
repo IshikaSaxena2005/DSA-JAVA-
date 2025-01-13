@@ -157,3 +157,5 @@ diameter= levels(LST)+levels(RST) //if it passes through the root
 recursively check for each node and return the maximum diameter among the left, right and the root diameter.
 
 
+
+
