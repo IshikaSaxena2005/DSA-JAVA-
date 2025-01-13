@@ -3,6 +3,7 @@ Types of Trees:
    Binary Tree: any node can have 0,1,2 children
    Binary Search Tree: the left child nodes are smaller than root node, the right child node are bigger than root node
    AVL Tree: BST which are self balanced
+   
 
 Creation of Tree:
   class Node
@@ -164,6 +165,98 @@ recursivelt check for left and right
 if(left!=null && right!=null) return root
 return (left!=null)?left:right
 
+Types of Binary Tree:
+   Full Binary Tree: 0 or 2 children
+   Perfect Binary Tree: exactly 2 children
+   Complete Binary Tree:Kind of Perfect BT but its last level can be incomplete
+   Balanced Binary Tree: the difference between level(LST) and levels(RST) is less than equal to 1
+   Degerenrate Tree: 0 or 1 child
 
+BFS Levele Order Traversal:
+(Using Queue)
+-First in first out
+pop<-<-<-<-<-<-<-push
+(front)          (rear)
+(deletion)        (insertion)
 
+public class Traversals{
+private static void levelOrder(Node root)
+{
+Queue<Node> q = new LinkedList<>();
+if(root!=null) q.add(root);
+while(q.size()>0)
+{
+Node front = q.remove();
+System.out.println(root.val);
+if(front.left!=null)q.add(root.left);
+if(front.right!=null)q.add(root.right);
+}
+}
+public static void main(String[] args)
+{
+Node a = new Node(1);
+Node b = new Node(2);
+Node c = new Node(3);
+Node d = new Node(4);
+Node e = new Node(5);
+Node f = new Node(6);
+Node g = new Node(7);
+Node h = new Node(8);
+Node i = new Node(9);
+a.left=b; a.right=c;
+b.left=d; b.right=e;
+d.left=f; d.right=g;
+f.left=h; f.right=i;
+System.out.println("Level Order Treversals:);
+levelOrder(root);
+}}
+
+//function for right to left traversal
+private static levelOrderRtoL(Node  root)
+{
+Queue<Node> q = new LinkedList<>();
+if(root!=null) q.add(root);
+while(q.size>0)
+{
+int front = q.remove();
+System.out.printl(root.val);
+if(front.right!=null) q.add(front.right);
+if(front.left!=null) q.add(front.left);
+}
+
+5)Print levels of nth level:
+preoder(root,level) => whenever we go left or right level+1 =>if levels becomes equal to a given level print the eleents
+static int n;
+private static preorder(Node root, int level)
+{
+if(root==null) return;
+if(level==n)System.out.print(root.val);
+preorder(root.left,level+1);
+preorder(root.right,level+1)
+}
+
+Level Order Traversal(Using OOPS CONCEPTS):
+public class Traversals
+{
+public static class Pair{
+Node node;
+int level;
+Pair(Node node, int level)
+{
+this.node = node;
+this.level=level;
+}}
+private static void levelOrder(Node root)
+{
+Queue<Pair> q = new LinkedList<>();
+Pair p = new Pair(root,0);
+if(root!=null) q.add(p);
+while(q.size()>0)
+{
+Pair front=q.remove();
+Node temp=front.node;
+System.out.print(temp.val+"");
+if(temp.left!=null) q.add(front.left);
+if(temp.right!=null) q.add(front.right);
+}}
 
