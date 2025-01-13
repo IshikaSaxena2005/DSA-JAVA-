@@ -156,6 +156,14 @@ diameter= levels(LST)+levels(RST) //if it passes through the root
 //if not neccesarily passing throught the root then:
 recursively check for each node and return the maximum diameter among the left, right and the root diameter.
 
+4)Lowest common Ancestor
+check where is p and qq is lying
+case1:  root==null: return null
+case2:  root==p || root==q return root
+recursivelt check for left and right
+if(left!=null && right!=null) return root
+return (left!=null)?left:right
+
 
 
 
