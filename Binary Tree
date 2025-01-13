@@ -150,3 +150,10 @@ both nodes are null
 any one of them is null
 the values are not equal
 recursively call left and right nodes
+
+3)Diameter of Binary Tree =>Leetcode 543
+diameter= levels(LST)+levels(RST) //if it passes through the root
+//if not neccesarily passing throught the root then:
+recursively check for each node and return the maximum diameter among the left, right and the root diameter.
+
+
