@@ -140,3 +140,13 @@ reverse preorder root right left
 reverse inorder right root left
 reverse postorder right left root
 
+2nd method of Traversal: pre in post(2 calls and printing)
+
+1)Invert a Binary Tree=>Leetcode 226
+swapping and recursive call
+
+2)Same Tree=>Leetcode 100
+both nodes are null
+any one of them is null
+the values are not equal
+recursively call left and right nodes
