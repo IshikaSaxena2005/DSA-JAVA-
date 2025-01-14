@@ -160,4 +160,63 @@ class Solution
     }
 }
     
+//PATH SUM Leetcode 113
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution {
+    public void helper(TreeNode root, int target, List<Integer> currentPath, List<List<Integer>> result) {
+        if (root == null) return;
+
+        List<Integer> path = new ArrayList<>(currentPath);
+        path.add(root.val);
+
+       
+        if (root.left == null && root.right == null && root.val == target) {
+            result.add(path);
+            return;
+        }
+
+        
+        helper(root.left, target - root.val, path, result);
+        helper(root.right, target - root.val, path, result);
+    }
+
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> result = new ArrayList<>();
+        helper(root, targetSum, new ArrayList<>(), result);
+        return result;
+    }
+}
+
+//Leetcode 437
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int helper(TreeNode root, long targetSum) {
+        if (root == null) return 0;
+        int count = 0;
+        if (root.val == targetSum) count++;
+        count += helper(root.left, targetSum - root.val) + helper(root.right, targetSum - root.val);
+        return count;
+    }
+    
+    public int pathSum(TreeNode root, int targetSum) {
+        if (root == null) return 0;
+        return helper(root, targetSum) + pathSum(root.left, targetSum) + pathSum(root.right, targetSum);
+    }
+}
 
