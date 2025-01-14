@@ -83,3 +83,81 @@ class Solution {
     }
 }
 
+//Leetcode 199
+//right side means all the nodes which are at the rightmost in each level
+//har level meh left to right jaana: a level variable
+//prorder is root left right, we need the rightmost so set the rightmost ele in the ans arraylist
+//do this for each level
+class Solution {
+    public int levels(TreeNode root)
+    {
+        if(root==null) return 0;
+        return 1+Math.max(levels(root.left),levels(root.right));
+    }
+    public void preorder(TreeNode root,int levels,List<Integer>ans)
+    {
+        if(root==null) return;
+        ans.set(levels,root.val);
+        preorder(root.left,levels+1,ans);
+        preorder(root.right,levels+1,ans);
+    }
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        if(root==null) return ans;
+        int n=levels(root);
+       
+        //initial add 0
+        for(int i=0;i<n;i++)
+        {
+            ans.add(0);
+        }
+        preorder(root,0,ans);
+        return ans;
+
+    }
+}
+
+//Leetcode 110
+//balacnce BT= levels(LST)-levels(RST) math.abs<=1
+class Solution {
+    public int levels(TreeNode root)
+    {
+        if(root==null) return 0 ;
+        return 1+ Math.max(levels(root.right),levels(root.left)); // method to find the no of levels in a binary tree
+        // this is the accessive
+
+    }
+    public boolean isBalanced(TreeNode root) {
+        if(root==null) return true;
+        int diff=Math.abs(levels(root.left)- levels(root.right));
+        if(diff>1) return false;
+        boolean lst = isBalanced(root.left);
+        if(lst==false) return false;
+        boolean rst = isBalanced(root.right);
+        if(rst==false) return false;
+        return true;
+    }
+}
+
+// Diameter of Binary Tree(O(n) approach)
+class Solution
+{
+    static int dia;
+    public int levels(TreeNode root)
+    {
+        if(root==null) return 0;
+        int leftlevels=levels(root.left);
+        int rightlevels=levels(root.right);
+        int dia=leftlevels+ rightlevels;
+        maxDia=Math.max(dia,maxDia);
+        return 1+Math.max(leftlevels,rightlevels);
+    }
+    public int diameterOFBinaryTree(TreeNode root)
+    {
+        maxDia=0;
+        levels(root);
+        return maxDia;
+    }
+}
+    
+
