@@ -260,3 +260,120 @@ if(temp.left!=null) q.add(front.left);
 if(temp.right!=null) q.add(front.right);
 }}
 
+<Important for Interview>
+Traversals using Iterative method
+1)Preorder(Root left right)
+-add root ele in the call stack
+-if left and right children exist then pop the root ele and add its right and left children in the stack resp
+-becaz of LIFO
+-repeat this process
+-stack is of TreeNode
+public class Solution
+{
+private List<Integer> preorder(Node root)
+{
+Stack<TreeNode> st= new Stack<>();
+if(root!=null)st.push(root);
+List<Integer> ans = new ArrayList<>();
+while(st.size()>0)
+{
+TreeNode top=st.pop();
+ans.add(top.val);
+   if(top.right!=null)
+   {
+      st.push(top.right);}
+   if(top.left!=null)
+   {
+    st.push(top.left);
+   }
+}
+return ans;
+}}
+TC:O(n) n is the nodes of the tree
+SC:O(h)/O(n) h is the level of the tree
+
+2)postOrder
+public class Solution
+{
+private List<Integer> postorder(TreeNode root)
+{
+Stack <TreeNode> st = new Stack<>();
+if(root==null) return ans;
+st.push(root);
+List<Integer> ans= new ArrayList<>();
+while(st.size()>0)
+{
+TreeNode top=st.pop();
+ans.add(top.val);
+if(top.left!=null) {st.push(top.left);}
+if(top.right!=null){st.push(top.right);}
+}
+return ans;
+}}
+
+//method 2 is post order is reverse of reverse preorder.
+//reverse preorder:Root right left
+public class Solution
+{
+private List<Integer> preorder(Node root)
+{
+Stack<TreeNode> st= new Stack<>();
+if(root!=null)st.push(root);
+List<Integer> ans = new ArrayList<>();
+while(st.size()>0)
+{
+TreeNode top=st.pop();
+ans.add(top.val);
+if(top.left!=null)
+   {
+    st.push(top.left);
+   }
+   if(top.right!=null)
+   {
+      st.push(top.right);}
+   
+}
+Collections.reverse(ans);
+return ans;
+}}
+
+3)Inorder 
+-stack and a variable(node)
+-loop:
+-variable temp =root
+-2 cases temp can be null or it cannot be null
+-if temp!=null -> st.push(temp) -> temp=temp.left
+else temp==null -> check if stack is not empty-> print the ele on the top of the stack ->Node top=st.pop() print is
+->temp=top.right 
+
+public List<Integer> inorder(TreeNode root)
+{
+List<Integer> ans = new ArrayList<>();
+Stack<TreeNode> st = new Stack<>();
+TreeNode temp=root;
+while(true)
+{
+if(temp!=null)
+{
+st.push(temp);
+temp=temp.left;
+}
+else
+{
+if(st.size==0) break;
+TreeNode top=st.pop();
+ans.add(top.val);
+temp=top.right;
+}
+}
+return ans;
+}
+TC:O(n)
+SC: O(n)
+Auxillary space: maximum space of stack
+best case:  AS: O(logn) 
+worst case: AS: O(n)
+
+
+
+
