@@ -220,3 +220,36 @@ class Solution {
     }
 }
 
+//Leetcode 105
+//there is only one tree which will have same inorder and preorder
+//2 arr is given then there is only one possibility of a tree when the arrays represent one preoder and oneinorder
+//the first element of the preoder array is the root element
+//maintain prelo prehi inlo inhi
+//maintain helper function
+public TreeNode helper(int[ preorder,int[]inorder,int prelo,int prehi,int ilo,int inhi)
+    {
+        if(prelo>prehi || inlo>inhi)
+        {
+            return null;
+        }
+    //the first element is root of the preorder
+    TreeNode root= new TreeNode(preorder[prelo]);
+    int r = inlo;
+    while(r!=root.val) //it remains the left side ele
+        {
+            r++;
+        }
+    int leftsize=r-inlo;
+     root.left = helper(preorder, inorder, prelo + 1, prelo + leftsize, inlo, r - 1);
+        root.right = helper(preorder, inorder, prelo + leftsize + 1, prehi, r + 1, inhi);
+
+        return root;
+    }
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int n = preorder.length;
+        return helper(preorder, inorder, 0, n - 1, 0, n - 1);
+    }
+
+    
+
