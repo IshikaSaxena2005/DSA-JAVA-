@@ -1,1 +1,7 @@
+BINARY SEARCH TREE
+the root value should e greater than left sub tree and smaller than the right subtree-->WRONG MISCONCEPTION
+this above statement is wrong
+root.val>max(LST) && root.val<min(RST)->correct
+Can a BST can contain duplicate elements? YES, in general a BST contains unique elements
+but if it is given in the question then see the definition of BST in the ques and solve accordingly.
 
