@@ -251,5 +251,89 @@ public TreeNode helper(int[ preorder,int[]inorder,int prelo,int prehi,int ilo,in
         return helper(preorder, inorder, 0, n - 1, 0, n - 1);
     }
 
-    
+    //Leetocode 101
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+   
+    public int levels(TreeNode root) {
+        if (root == null) return 0;
+        return 1 + Math.max(levels(root.left), levels(root.right));
+    }
 
+    public boolean Mirror(TreeNode t1, TreeNode t2) {
+        if (t1 == null && t2 == null) return true; 
+        if (t1 == null || t2 == null) return false; 
+        if (t1.val != t2.val) return false; 
+
+        return Mirror(t1.left, t2.right) && Mirror(t1.right, t2.left);
+    }
+
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) return true; 
+
+        int leftLevels = levels(root.left);
+        int rightLevels = levels(root.right);
+        if (leftLevels != rightLevels) return false; 
+
+    
+        return Mirror(root.left, root.right);
+    }
+}
+
+//Zigzag order traversal
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result; // Return empty list if the tree is empty
+        }
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        boolean leftToRight = true;
+
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            List<Integer> currentLevel = new ArrayList<>();
+
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode currentNode = queue.poll();
+                
+            
+                if (leftToRight) {
+                    currentLevel.add(currentNode.val);
+                } else {
+                    currentLevel.add(0, currentNode.val); 
+                }
+
+              
+                if (currentNode.left != null) {
+                    queue.offer(currentNode.left);
+                }
+                if (currentNode.right != null) {
+                    queue.offer(currentNode.right);
+                }
+            }
+
+    
+            result.add(currentLevel);
+            leftToRight = !leftToRight;
+        }
+        
+        return result;
+    }
+}
