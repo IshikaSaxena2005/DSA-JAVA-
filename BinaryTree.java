@@ -337,3 +337,31 @@ class Solution {
         return result;
     }
 }
+
+//Leetcode 889
+class Solution {
+    public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
+        return build(preorder, postorder, 0, 0, preorder.length);
+    }
+
+    private TreeNode build(int[] preorder, int[] postorder, int preStart, int postStart, int length) {
+        if (length == 0) return null;
+        if (length == 1) return new TreeNode(preorder[preStart]);
+
+        TreeNode root = new TreeNode(preorder[preStart]);
+        int leftRootVal = preorder[preStart + 1];
+        int leftSize = 0;
+
+        for (int i = postStart; i < postStart + length; i++) {
+            if (postorder[i] == leftRootVal) {
+                leftSize = i - postStart + 1;
+                break;
+            }
+        }
+
+        root.left = build(preorder, postorder, preStart + 1, postStart, leftSize);
+        root.right = build(preorder, postorder, preStart + leftSize + 1, postStart + leftSize, length - leftSize - 1);
+
+        return root;
+    }
+}
