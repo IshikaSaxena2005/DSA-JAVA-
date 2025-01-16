@@ -30,6 +30,23 @@ root.val==target
 root.val< target
 root.val>target
 
+Inorder Traversal in BST:
+               10
+             /     \ 
+            7      14
+           / \     / \
+          3   8   11  12   
+      inorder: 3 7 8 10 11 14 21 <sorted>
+after inorder traversal of a BST we always get a sorted list
+
+
+
+
+
+
+
 List of Questions solved:
 Leetcode 700
 Leetcode 701
+Leetocoe 94
+Leetcode 230
