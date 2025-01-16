@@ -23,3 +23,13 @@ Stock Market analysis
 You have 3 nodes with different value how many unique BST can be formed?
 only one possible way(since BST needs to follow a set of properties)
 
+Search element in the BST:
+-in BST we do not need to search the entire tree
+-3 case:
+root.val==target
+root.val< target
+root.val>target
+
+List of Questions solved:
+Leetcode 700
+Leetcode 701
