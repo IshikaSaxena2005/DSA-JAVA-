@@ -5,3 +5,21 @@ root.val>max(LST) && root.val<min(RST)->correct
 Can a BST can contain duplicate elements? YES, in general a BST contains unique elements
 but if it is given in the question then see the definition of BST in the ques and solve accordingly.
 Find minimum and maximum of a BST
+
+Advantages of BST:
+Efficient Searching
+Efficient insertion and deletion
+Usage in implementation of other data structures like sets, maps, priority queues
+
+Diadvantages:
+Lack of support for range queries
+Not that efficient in case of Unbalanced Trees
+
+Applications:
+Phonebook
+Dictionary
+Stock Market analysis
+
+You have 3 nodes with different value how many unique BST can be formed?
+only one possible way(since BST needs to follow a set of properties)
+
