@@ -39,9 +39,11 @@ Inorder Traversal in BST:
       inorder: 3 7 8 10 11 14 21 <sorted>
 after inorder traversal of a BST we always get a sorted list
 
+Consider a binary Tree with n nodes. What is the maximum possible height of the tree?
+-> n
+minimum possible height? -> logn
 
-
-
+Consider a BST with n nodes. What is the worst case of time complexity inc ase of searchinf->log n
 
 
 
