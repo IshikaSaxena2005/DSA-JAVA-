@@ -129,3 +129,57 @@ class Solution {
         return ans.get(k-1);
     }
 }
+
+//Leetcode 93
+class Solution {
+    public void inorder(TreeNode root,List<Integer> ans)
+    {
+        if(root==null) return;
+        inorder(root.left,ans);
+        ans.add(root.val);
+        inorder(root.right,ans);
+
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        if(root==null) return true;
+        inorder(root,ans);
+        for(int i=1;i<ans.size();i++)
+        {
+            if(ans.get(i)<=ans.get(i-1)) return false;
+        }
+        return true;
+    }
+}
+
+//method -2:
+class Solution
+        {
+                static boolean flag;
+                private long max(TreeNode root)
+                {
+                        if(root==null return long.MIN_VALUE;
+                        long leftMax= max(root.left;
+                        if(leftMax>=root.val) flag=false;
+                        long rightMax=max(root.right);
+                        return Math.max(root.val,Math.max(leftMax,rightMax));
+                }
+                private long min(TreeNode root)
+                {
+                        if(root==null) return long.MAX_VALUE;
+                        long leftMin=min(root.left);
+                        long rightMin= min(root.right);
+                        if(rightMin<=root.val) flag=false;
+                        return MAth.min(root.val,Math.min(leftMin,rightMin));
+                }
+                public boolean isVAlidBST(TreeNode root)
+                {
+                        flag=true;
+                        max(root);
+                        min(root);
+                        return flag;
+                }
+        }
+                        
+        
