@@ -94,8 +94,31 @@ construct BST from preorder
 -making copy: int[]iorder=Arrays.copyOf(preorder)
 Arrays.sort(inorder);
 
-INORDER PREDECESSOR:
+INORDER PREDECESSOR for BST:
+-the immmediate left and right are its predessor and succesor
+pred=root.left
+while(pred.right!=null)
+{
+ pred=pred.right;
+}
  
+INORDER SUCESSOR(go right then left)
+succ=root.right;
+while(succ.left!=null)
+{
+ succ=succ.left;
+}
+
+DELETION OF NODE IN BST
+if(root.val==key) return null;
+else if(root.val>key)
+{
+ root.left=delete(root.left,key)
+}
+else (root.val<key)
+{
+root.right=delete(root.right,key)
+}
 
 
 
@@ -117,6 +140,7 @@ Leetcode 1038
 Leetcode 108
 Leetcode 1382
 Leetcode 1008
+Leetcode 450
 
 
 
