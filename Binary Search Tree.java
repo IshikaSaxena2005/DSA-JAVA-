@@ -275,3 +275,60 @@ class Solution {
         return root;     
     }
 }
+
+//Leetcode 108
+lass Solution {
+  //no need of inorder since the array is already sorted
+  public TreeNode helper(int[]nums,int lo,int hi)
+  {
+    if(lo>hi) return null;
+    //then find mid
+    int mid=lo+(hi-lo)/2;
+    int n=nums.length;
+    if(n==0) return null;
+    TreeNode root= new TreeNode(nums[mid]);
+    root.left= helper(nums,lo,mid-1);
+    root.right=helper(nums,mid+1,hi);
+    return root;
+  }
+    public TreeNode sortedArrayToBST(int[] nums) {
+        int n=nums.length;
+        return helper(nums,0,n-1);
+        
+    }
+}
+
+//Leetcode 1382
+class Solution {
+    public void inorder(TreeNode root,List<Integer> ans)
+    {
+        if(root==null) return;
+        inorder(root.left,ans);
+        ans.add(root.val);
+        inorder(root.right,ans);
+    }
+    public TreeNode newTree(int lo,int hi,int[]nums)
+    {
+        if(lo>hi) return null;
+        int mid=lo+(hi-lo)/2;
+          int n=nums.length;
+        if(n==0)return null;
+        TreeNode root=new TreeNode(nums[mid]);
+      
+        root.left=newTree(lo,mid-1,nums);
+        root.right=newTree(mid+1,hi,nums);
+        return root;
+    }
+    public TreeNode balanceBST(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        inorder(root,ans);
+        int[] nums= new int[ans.size()];
+        for(int i=0;i<ans.size();i++)
+        {
+            nums[i]=ans.get(i);
+        }
+        
+        return newTree(0,nums.length-1,nums);
+        
+    }
+}
