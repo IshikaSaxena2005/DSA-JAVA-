@@ -182,4 +182,96 @@ class Solution
                 }
         }
                         
-        
+
+//Leetcode 236
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+            TreeNode left= lowestCommonAncestor(root.left,p,q);
+            TreeNode right= lowestCommonAncestor(root.right,p,q);
+            if(left!=null && right !=null)
+            {
+                    return root;
+            }
+            return (left!=null)?left:right;
+    }}
+//method 2:
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+            if(root.val<p.val && root.val<q.val) return lowestCommonAncestor(root.right,p,q);
+            else if(root.val>p.val && root.val>q.val) return lowestCommonAncestor(root.left,p,q);
+            else return root;
+    }}
+
+//Leetcode 538
+class Solution {
+    public void inorder(TreeNode root,List<Integer> ans)
+    {
+        if(root==null) return;
+        inorder(root.left,ans);
+        ans.add(root.val);
+        inorder(root.right,ans);
+    }
+    public void updateTree(TreeNode root,List<Integer> ans,int[] index)
+    {
+        if(root==null) return;
+        updateTree(root.left,ans,index);
+        root.val=ans.get(index[0]);
+        index[0]++;
+        updateTree(root.right,ans,index);
+    }
+    public TreeNode convertBST(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        inorder(root,ans);
+        for(int i=ans.size()-2;i>=0;i--)
+        {
+            ans.set(i,ans.get(i)+ans.get(i+1));
+        }
+        int[]index={0};
+        updateTree(root,ans,index);
+        return root;
+    }
+}
+            
+//Leetcode 1038
+class Solution {
+    public void inorder(TreeNode root,List<TreeNode> arr)
+    {
+        if(root==null) return;
+        inorder(root.left,arr);
+        arr.add(root);
+        inorder(root.right,arr);
+    }
+
+    public TreeNode bstToGst(TreeNode root) {
+        List<TreeNode> arr = new ArrayList<>();
+        inorder(root,arr);
+        int n =arr.size();
+        for(int i =n-2;i>=0;i--)
+        {
+            arr.get(i).val+=arr.get(i+1).val;
+        }
+        return root;
+    }
+}
+
+//method 2
+class Solution {
+    static int sum;
+    public void reverseinorder(TreeNode root)
+    {
+        if(root==null) return;
+        reverseinorder(root.right);
+         root.val+=sum;
+            sum=root.val;
+        reverseinorder(root.left);
+    }
+    public TreeNode bstToGst(TreeNode root) {
+        sum=0;
+        reverseinorder(root);
+        return root;     
+    }
+}
