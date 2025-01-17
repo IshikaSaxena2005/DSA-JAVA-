@@ -65,14 +65,46 @@ BST to GST:
 -root.val+=sum in the reverse inorder and sum becomes root.val
 -reverse inorder right root left
 
+Convert Sorted array to BST:
+- we need to target the middle element and make it root
+-then inorder chalao 
+-LST pass thorgh recursion and apply the step1
+-lo and hi variable
+-find the mid and make a node TreeNode root=nee TreeNode(arr[mid])
+-recursively attach LST and RST
+-do the same
+-LST-lo to mid-1
+-RST-mid+1 to hi
+-lo>hi ->return null
+else attach left and right
+--calculate mid as lo+(hi-lo)/2
+
+converting ArrayList to array:
+List<Integer> ans = new ArrayList<>();
+int[]nums=new int[ans.size()];
+for(int i=0;i<ans.size();i++)
+{
+nums[i]=ans.get(i);
+}
+
+
+
+Balance a BST:
+-we need to create a new Tree
+-BST-> sorted array-> sorted array to BST
+follow up: (next ques is to modify the tree and not create a new Tree)
 List of Questions solved:
 Leetcode 700
 Leetcode 701
 Leetocoe 94
 Leetcode 230
 Leetcode 98
+Leetcode 108
 Leetcode 236
 Leetcode 538
 Leetcode 1038
+Leetcode 108
+Leetcode 1382
+
 
 
