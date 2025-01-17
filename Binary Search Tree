@@ -55,8 +55,15 @@ and q's value is greater than root then the LCA is root
 - if both val of p and q becomes greter than root-> move to right}
 
 
+greater sum tree
+-every val replced by the no.+ all elements greater than the no.
+-hint:inorder
+-List<TreeNode> arr={1,2,3,4,5,6,7}
+-run loop in reverse order n-2 to 0 add the prev no and the no itself
 
-
+BST to GST:
+-root.val+=sum in the reverse inorder and sum becomes root.val
+-reverse inorder right root left
 
 List of Questions solved:
 Leetcode 700
@@ -65,4 +72,7 @@ Leetocoe 94
 Leetcode 230
 Leetcode 98
 Leetcode 236
+Leetcode 538
+Leetcode 1038
+
 
