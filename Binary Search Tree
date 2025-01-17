@@ -87,6 +87,17 @@ for(int i=0;i<ans.size();i++)
 nums[i]=ans.get(i);
 }
 
+construct BST from preorder
+-there is only one BST possible from a preorder
+-inorder of BST is always sorted
+-make a copy of the preorder tree and sort it
+-making copy: int[]iorder=Arrays.copyOf(preorder)
+Arrays.sort(inorder);
+
+INORDER PREDECESSOR:
+ 
+
+
 
 
 Balance a BST:
@@ -96,7 +107,7 @@ follow up: (next ques is to modify the tree and not create a new Tree)
 List of Questions solved:
 Leetcode 700
 Leetcode 701
-Leetocoe 94
+Leetcode 94
 Leetcode 230
 Leetcode 98
 Leetcode 108
@@ -105,6 +116,7 @@ Leetcode 538
 Leetcode 1038
 Leetcode 108
 Leetcode 1382
+Leetcode 1008
 
 
 
