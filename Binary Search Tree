@@ -45,6 +45,17 @@ minimum possible height? -> logn
 
 Consider a BST with n nodes. What is the worst case of time complexity inc ase of searchinf->log n
 
+Validate BST: the inorder will always be in ascending order for the BST
+
+Lowest common ancestor:
+of BST:
+-if root exist and p is in  the LST and q is in the right subtree and if p's value is less than root 
+and q's value is greater than root then the LCA is root
+-both the values of p and q are less than r ->move root to the left->recursively apply the above check
+- if both val of p and q becomes greter than root-> move to right}
+
+
+
 
 
 List of Questions solved:
@@ -52,3 +63,6 @@ Leetcode 700
 Leetcode 701
 Leetocoe 94
 Leetcode 230
+Leetcode 98
+Leetcode 236
+
