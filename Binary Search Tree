@@ -120,13 +120,114 @@ else (root.val<key)
 root.right=delete(root.right,key)
 }
 
-
-
-
 Balance a BST:
 -we need to create a new Tree
 -BST-> sorted array-> sorted array to BST
 follow up: (next ques is to modify the tree and not create a new Tree)
+
+MORRIS TRAVERSAL:
+-inorder traversal
+-interview
+-without using extra space
+-maintain variables
+while(curr!=null)
+{
+  if(curr.left!=null)
+    {
+      Node pred= curr.left;
+      while(pred.right!=null &&pred.right!=c)
+        {
+          pred=pred.right;
+          }
+    if(pred.right==null)
+    {
+      pred.right=curr;
+      curr=curr.left;
+    }
+    else
+      {
+        visit(curr);
+        curr=curr.right;
+        pred.right=null;
+        }
+  }
+else
+{  
+  visit(curr);
+  curr=curr.right;
+  }
+
+Flatten Binary Tree to LinkedList(Interview Ques)
+-binary tree ka joh preorder aaega uski linked list banani hai
+-root left right(in linked list form)
+-har node ka left is null and all elements are in root.right
+class Solution {
+    public void preorder(TreeNode root,List<TreeNode> pre)
+    {
+        if(root==null) return;
+        pre.add(root);
+        preorder(root.left,pre);
+        preorder(root.right,pre);
+    }
+    public void flatten(TreeNode root) {
+        List<TreeNode> pre = new ArrayList<>();
+        preorder(root,pre);
+        int n = pre.size();
+        for(int i=0;i<n;i++)
+        {
+            if(i!=n-1) pre.get(i).right=pre.get(i+1);
+            pre.get(i).left =null;
+        }
+    }
+}
+
+//method -2(Recursion):
+-break the tree
+-flat LST and RST
+-connect root with LST and LST to RST
+class Solution
+{
+public void flatten(TreeNode root)
+{
+if(root==null) return;
+if(root.left==null && root.right==null) return;
+TreeNode lst=root.left;
+TreeNode rst=root.right;
+flatten(lst);
+flatten(rst);
+root.left=null;
+root.right=lst;
+TreeNode temp=root;
+while(temp.right!=null) temp=temp.right;
+temp.right=rst;
+}}
+
+//method 3 morris traversal
+public void flatten(TreeNode root)
+{
+TreeNode curr=root;
+while(curr!=null)
+{
+  if(curr.left!=null)
+    {
+      TreeNode r=curr.right;
+      curr.right=curr.left;
+      TreeNode pred=curr.left;
+      while(pred.right!=null) pred=pred.right;
+      pred.right=r;
+      curr.left=null;
+      curr=curr.right;
+      }
+      else
+      {
+        curr=curr.right;
+      }
+}}
+
+
+
+
+
 List of Questions solved:
 Leetcode 700
 Leetcode 701
@@ -141,6 +242,6 @@ Leetcode 108
 Leetcode 1382
 Leetcode 1008
 Leetcode 450
-
+Leetcode 114
 
 
