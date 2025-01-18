@@ -224,7 +224,9 @@ while(curr!=null)
       }
 }}
 
-
+Q.Given a BST, count subtrees in it whose nodes lie within a given range.
+Q. Given a BST and two keys in it. Find the distance between two nodes with given two keys. It may be
+assumed that both keys exist in BST.
 
 
 
@@ -235,6 +237,8 @@ Leetcode 94
 Leetcode 230
 Leetcode 98
 Leetcode 108
+Leetcode 235
+Leetcode 938
 Leetcode 236
 Leetcode 538
 Leetcode 1038
@@ -243,5 +247,5 @@ Leetcode 1382
 Leetcode 1008
 Leetcode 450
 Leetcode 114
-
+Leetcode 1305
 
