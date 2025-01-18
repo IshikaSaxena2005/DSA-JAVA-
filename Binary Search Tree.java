@@ -441,3 +441,68 @@ class Solution {
         }
     }
 }
+
+//Leetcode 938
+class Solution {
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if (root == null) return 0;
+
+        int sum = 0;
+        if (root.val >= low && root.val <= high) {
+            sum += root.val;
+        }
+        if (root.val > low) {
+            sum += rangeSumBST(root.left, low, high);
+        }
+        if (root.val < high) {
+            sum += rangeSumBST(root.right, low, high);
+        }
+        return sum;
+    }
+}
+
+
+//Leetcode 1305
+class Solution {
+    public void inorder(TreeNode root, List<Integer> inorder) {
+        if (root == null) return;
+        inorder(root.left, inorder);
+        inorder.add(root.val); 
+        inorder(root.right, inorder);
+    }
+
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> lst1 = new ArrayList<>();
+        List<Integer> lst2 = new ArrayList<>();
+        
+       
+        inorder(root1, lst1);
+        inorder(root2, lst2);
+        
+      
+        return mergeSortedLists(lst1, lst2);
+    }
+
+    private List<Integer> mergeSortedLists(List<Integer> lst1, List<Integer> lst2) {
+        List<Integer> result = new ArrayList<>();
+        int i = 0, j = 0;
+
+        while (i < lst1.size() && j < lst2.size()) {
+            if (lst1.get(i) < lst2.get(j)) {
+                result.add(lst1.get(i++));
+            } else {
+                result.add(lst2.get(j++));
+            }
+        }
+
+        while (i < lst1.size()) {
+            result.add(lst1.get(i++));
+        }
+
+        while (j < lst2.size()) {
+            result.add(lst2.get(j++));
+        }
+
+        return result;
+    }
+}
