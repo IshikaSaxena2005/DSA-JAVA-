@@ -1,1 +1,67 @@
+HASHSET
+-type of datastructure
+-TC:O(1):searching
+
+import java.util.HashSet;
+public class basic
+{
+public static void main(String[]args)
+{
+HashSet<Integer> set = new HashSet<>(); //this integer is a wrapper class of int
+set.add(10);
+set.add(20);
+set.add(30);
+//adding TC:O(1)
+System.out.println(set);
+//the elements are inserted in random order inside the set
+//printed in random order
+//search an element
+System.out.print(set.contains(10)); // return true or false //TC:O(1)
+System.out.print(set.size()); //3 TC:O(1)
+set.remove(30);  //TC:O(1)
+System.out.print(set); //10,20
+Object[] arr= set.toArray();
+for(int i=0;i<arr.length;i++)
+{
+  System.out.print(arr[i]+"");
+}}}
+
+For iteration in Hashset: using for each loop
+for(int ele:set)
+{
+ System.out.print(ele);
+set.add(30); //not possible 
+}
+//during iteration we cannnot add or remove elements
+set.clear();  //empty set
+//in hashset, occurance of any element is 1
+//no element is repeated in set
+
+HashSet<String> srt= new HashSet<>();
+
+find max reverse pairs:
+make a set
+make a variable count
+iterate in words see for each rev=reverse(words[i])
+if(set.contains(rev)->count++
+else -> set.add(words[i])
+
+for reverseing make a StringBuilder
+sb.reverse()
+return sb.toString()
+
+HASHMAP:
+-type of data structure
+-insert,remove,search->TC:O(1)
+-pairs are inserted
+
+
+
+
+
+
+Question:
+Leetcode 2442
+Leetcode 2744
+
 
