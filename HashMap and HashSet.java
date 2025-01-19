@@ -44,3 +44,46 @@ class Solution {
         return count;
     }
 }
+
+//Leetcode 1
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int [] ans={-1,-1};
+        HashMap<Integer,Integer> map= new HashMap<>();
+        for(int i=0;i<nums.length;i++)
+        {
+            int rem=target-nums[i];
+            if(map.containsKey(rem))
+            {
+                ans[0]=i;
+                ans[1]=map.get(rem);
+                break;
+            }
+            else map.put(nums[i],i);
+        }
+        return ans;
+    }
+}
+
+//Leetcode 1207
+class Solution {
+    public boolean uniqueOccurrences(int[] arr) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int ele:arr)
+        {
+            if(map.containsKey(ele))
+            {
+                int freq=map.get(ele);
+                map.put(ele,freq+1);
+            }
+            else map.put(ele,1);
+        }
+        HashSet<Integer> set= new HashSet<>();
+        for(int key:map.keySet())
+        {
+            int val=map.get(key);
+            set.add(val);
+        }
+        return (map.size()==set.size());
+    }
+}
