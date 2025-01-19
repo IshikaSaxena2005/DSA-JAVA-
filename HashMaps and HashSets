@@ -55,13 +55,58 @@ HASHMAP:
 -insert,remove,search->TC:O(1)
 -pairs are inserted
 
+import java.util.HashMap;
+public class maps
+{
+public static void main(String[]args)
+{
+HashMap<String,Integer> map=new HashMap<>();
+map.add("Ishika",20);
+map.add("Rishi",24);
+-key and value 
+System.out.print(map);
+System.out.print(map.conatainsKey("Ishika"));//true
+System.out.print(map.containsValue(20)); //true
+map.put("Rishi",25); //overrides the existing key values
+map.put("Riya",20); //valid 
+-every map will have unique key but the value can be repeated
+map.remove("Riya"); //removes the pair
+map.size();
+map.get(key) //give the value of that key
+System.out.print(map.get("Ishika");//20
+
+//traversing in HashMap
+map.keySet()-> contains key
+//can we can fetch values using the keys
+for(String key:map.keySet())
+{
+System.out.print(key + map.get(key));
+}
+for(Object pair: map.entrySet())
+{
+System.out.print(pair);
+}
+}}
 
 
+2Sum:
+arr:{2,5,9,4} target=9
+-crete hashmap ->ele,index store
+-remianing val=target-ele(arr[i])
+search in the hashmap
+
+TREESETS AND TREEMAPS
+-treeset and treemaps are alsways sorted
+TreeSet<Integer> set= new TreeSet<>();
+-these are balance BST.
+-TreeMap<String,Integer> map= new TreeMap<>(); //sorted on the basis of dictionary and ascii values
 
 
 
 Question:
 Leetcode 2442
 Leetcode 2744
+Leetcode 1
+Leetcode 1207
 
 
