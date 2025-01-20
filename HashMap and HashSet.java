@@ -87,3 +87,56 @@ class Solution {
         return (map.size()==set.size());
     }
 }
+
+//Leetcode 2094
+import java.util.*;
+
+class Solution {
+    public int[] findEvenNumbers(int[] digits) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int ele : digits) {
+            map.put(ele, map.getOrDefault(ele, 0) + 1);
+        }
+
+        ArrayList<Integer> ans = new ArrayList<>();
+
+        for (int i = 100; i <= 999; i++) {
+            int x = i;
+            int c = x % 10; // Last digit
+            x /= 10;
+            int b = x % 10; // Middle digit
+            x /= 10;
+            int a = x % 10; // First digit
+
+            if (c % 2 != 0) continue;
+
+        
+            HashMap<Integer, Integer> tempMap = new HashMap<>(map);
+
+       
+            if (tempMap.getOrDefault(a, 0) > 0 &&
+                tempMap.getOrDefault(b, 0) > 0 &&
+                tempMap.getOrDefault(c, 0) > 0) {
+                
+                tempMap.put(a, tempMap.get(a) - 1);
+                tempMap.put(b, tempMap.get(b) - 1);
+                tempMap.put(c, tempMap.get(c) - 1);
+
+               
+                if (tempMap.get(a) >= 0 && tempMap.get(b) >= 0 && tempMap.get(c) >= 0) {
+                    ans.add(i);
+                }
+            }
+        }
+
+        
+        int[] ans1 = new int[ans.size()];
+        for (int i = 0; i < ans.size(); i++) {
+            ans1[i] = ans.get(i);
+        }
+
+        return ans1;
+    }
+}
+
