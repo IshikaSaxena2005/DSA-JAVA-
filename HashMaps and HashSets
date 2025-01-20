@@ -101,6 +101,20 @@ TreeSet<Integer> set= new TreeSet<>();
 -these are balance BST.
 -TreeMap<String,Integer> map= new TreeMap<>(); //sorted on the basis of dictionary and ascii values
 
+findding 3 digit even no:
+-make a 3 digit no.
+-1st digit should not be zero
+-make an even no
+-make distinct numbers
+-make HashMap and store there freq
+-see all 3 digit no. and see if I can make the 3 digit no. from my array
+-make ArrayList
+for(i=100to 999)
+{
+    x=i,  c=x%10 x/=10 b=x%10 x/=10 a=x%10
+all digits known and see if HashMap contains a,b,c -nested if
+
+Longest substring //leetcode 3
 
 
 Question:
@@ -108,5 +122,7 @@ Leetcode 2442
 Leetcode 2744
 Leetcode 1
 Leetcode 1207
+Leetcode2094
+Leetcode 3
 
 
