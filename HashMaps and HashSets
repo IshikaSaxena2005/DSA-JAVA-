@@ -109,6 +109,59 @@ TreeSet<Integer> set= new TreeSet<>();
 -go to your map => add arr[i]%k to hashmap
 -travel in the map and search k-arr[i] that exist in map check there freq if the freq is noteqal then cannot be pair up return false
 
+Top view of Binary Search
+-for every vertical level choose the top most element
+-BFS used
+-preorder cannot be used becaz it is depth first search hence while coming down the lowermost element will be called first
+-make a Hashmap at which vertical element is the element is stored
+-Queue for BFS
+Queue<Node,level>
+-apply BFs and then while removing the element check if map.containskey(ele)->if not then add map
+-add Left child and right child
+-the level of left child= curr level-1
+-right child level= curr level+1
+
+public static class Pair
+    {
+        TreeNode node;
+        int level;
+        Pair(TreeNode node,int level)
+        {
+            this.node=node;
+            this.level=level;
+        }
+    }
+public static void topView(TreeNode root)
+{
+    //level and node value
+    HashMap<Integer,Integer> map=new HashMap<>();
+    Queue<Pair> q= new LinkedList<>();
+    Pair r = new Pair(root,0);
+    int minLevel=Integer.MAX_VALUE;
+    int maxLevel=Integer.MIN_VALUE;
+    q.add(r);
+    while(q.size()>0)
+        {
+            Pair temp=q.remove();
+            TreeNode node=temp.node;
+            int lvl=temp.level;
+            minLevel=Math.min(minLevel,lvl);
+            maxLevel=Math.max(maxLevel,lvl);
+            if(!map.containsKey(lvl))
+            {
+                map.put(lvl,node.data);
+            }
+            if(node.left!=null) q.add(new Pair(node.left,lvl-1);
+            if(node.right!=null) q.add(new PAir(node.right,lvl+1);
+        }
+    for(int =minLevel;i<=maxLevel;i++)
+        {
+            System.out.print(map.get(i)+"");
+        }
+}
+
+
+
 
 Question:
 Leetcode 2442
