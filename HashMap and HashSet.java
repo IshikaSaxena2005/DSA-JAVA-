@@ -238,3 +238,130 @@ public static void topView(TreeNode root)
         }
 }
 
+//Leetcode 1814
+//[42,11,1,97]
+//nums[i]+rev(nums[j]) == nums[j] + rev(nums[i]) -> count++
+class Solution {
+    public int reverse(int n)
+    {
+        int r=0;
+        while(n!=0)
+        {
+            r=r*10 +n%10;
+            n/=10;
+        }
+        return r;
+    }
+    public int countNicePairs(int[] nums) {
+        int count=0;
+        int n= nums.length;
+        for(int i=0;i<n-1;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                if(nums[i]+reverse(nums[j])== nums[j]+ reverse(nums[i]))
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+} //TLE error
+
+make it: nums[i]-rev(nums[i]) == nums[j]-rev(nums[j])
+
+
+//Leetcode 138
+    class Solution {
+    public Node copyRandomList(Node head) {
+        Node temp=head;
+        HashMap<Node,Node> map= new HashMap<>();
+        while(temp!=null)
+        {
+            Node newNode= new Node(temp.val);
+            map.put(temp,newNode);
+            temp=temp.next;
+        }
+        temp=head;
+        while(temp!=null)
+        {
+            Node copyNode = map.get(temp);
+            copyNode.next=map.get(temp.next);
+            copyNode.random=map.get(temp.random);
+        }
+        return map.get(head);
+    }}
+
+//Leetcode 1679
+class Solution {
+    public int maxOperations(int[] nums, int k) {
+        HashMap<Integer,Integer> map= new HashMap<>();
+        int n=nums.length;
+        int count=0;
+        for(int i=0;i<n;i++)
+        {
+            if(map.containsKey(nums[i]))
+            {
+                int freq=map.get(nums[i]);
+                map.put(nums[i],freq+1);
+            }
+            else map.put(nums[i],1);
+        }
+        for(int num:nums)
+        {
+            int comp=k-num;
+            if(map.containsKey(comp) && map.containsKey(num))
+
+            {
+                if(map.get(num)>0 && map.get(comp)>0)    
+                {
+                    if(num==comp && map.get(num)<=1 )
+                    {continue;} //if numbers are same
+                    map.put(num,map.get(num)-1);
+                    map.put(comp,map.get(comp)-1);
+                    count++;
+                }
+            }
+        }
+return count;
+        
+    }
+}
+
+//Leetcode 1930
+import java.util.*;
+
+class Solution {
+    public int countPalindromicSubsequence(String s) {
+        HashMap<Character, Integer> first = new HashMap<>();
+        HashMap<Character, Integer> last = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            first.putIfAbsent(ch, i); 
+            last.put(ch, i); 
+        }
+
+        int count = 0;
+        
+    
+        for (char ch : first.keySet()) {
+            int firstIdx = first.get(ch);
+            int lastIdx = last.get(ch);
+            
+            if (firstIdx + 1 < lastIdx) { 
+                Set<Character> set = new HashSet<>();
+                for (int i = firstIdx + 1; i < lastIdx; i++) {
+                    set.add(s.charAt(i));
+                }
+                count += set.size();
+            }
+        }
+        
+        return count;
+    }
+}
+
+    
+
