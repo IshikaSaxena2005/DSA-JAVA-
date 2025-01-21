@@ -228,7 +228,49 @@ class Solution {
     }
 } //TLE error
 
-//method 
+//method 2:
+make it: nums[i]-rev(nums[i]) == nums[j]-rev(nums[j])
+    store the difference and its freq in map
+class Solution
+{
+    public int reverse(int n)
+    {
+        int r=0;
+        while(n!=0)
+        {
+            r=r*10 +n%10;
+            n/=10;
+        }
+        return r;
+    }
+    public int countNicePairs(int[] nums) {
+        int count=0;
+        int n=nums.length;
+        int mod= 1000000007;
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<n;i++)
+        {
+            int ele=nums[i]-reverse(nums[i]);
+            if(map.containsKey(ele))
+            {
+                int freq= map.get(ele);
+                count=(count+freq)%mod; //to avoid large numbers
+                map.put(ele,freq+1);
+            }
+            else map.put(ele,1);
+        }
+        return count;
+    }
+}
+//leetcode 1930
+-s is of lowercase english letters
+-see first occurance and last occurance
+- create 2 hashmaps
+-travel in the string->if str not in map then add ans the value is index
+-create last occurance
+a___a count maintain
+and travel between a__ a and see the characters
+
 
 
 
@@ -241,3 +283,7 @@ Leetcode 3
 Leetcode 2094
 Leetcode 1497
 Leetcode 1814
+Leetcode 138
+Leetcode 1679
+Leetcode 1930
+Leetcode 1781
