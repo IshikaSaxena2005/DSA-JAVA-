@@ -198,5 +198,43 @@ class Solution {
     }
 }
 
-
+//Top view of Binaray Tree
+public static class Pair
+    {
+        TreeNode node;
+        int level;
+        Pair(TreeNode node,int level)
+        {
+            this.node=node;
+            this.level=level;
+        }
+    }
+public static void topView(TreeNode root)
+{
+    //level and node value
+    HashMap<Integer,Integer> map=new HashMap<>();
+    Queue<Pair> q= new LinkedList<>();
+    Pair r = new Pair(root,0);
+    int minLevel=Integer.MAX_VALUE;
+    int maxLevel=Integer.MIN_VALUE;
+    q.add(r);
+    while(q.size()>0)
+        {
+            Pair temp=q.remove();
+            TreeNode node=temp.node;
+            int lvl=temp.level;
+            minLevel=Math.min(minLevel,lvl);
+            maxLevel=Math.max(maxLevel,lvl);
+            if(!map.containsKey(lvl))
+            {
+                map.put(lvl,node.data);
+            }
+            if(node.left!=null) q.add(new Pair(node.left,lvl-1);
+            if(node.right!=null) q.add(new PAir(node.right,lvl+1);
+        }
+    for(int =minLevel;i<=maxLevel;i++)
+        {
+            System.out.print(map.get(i)+"");
+        }
+}
 
