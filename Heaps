@@ -109,6 +109,7 @@ public void partialsort(int[]nums,int k)
     }
 }}
 
+if adding an object in priority use use comparable
 
 Questions:
 Leetcode 973
