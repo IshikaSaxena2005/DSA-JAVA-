@@ -1,1 +1,114 @@
+-type of priority queue
+minHeap->minimum element at top
+remove()->remove that element and do the rearrangement to add the lowest element on the top
+add()->add the element and do the rearrangement
+PriorityQueue<Integer> pq = new PriorityQueue<>();
+pq.add(10);
+pq.add(20);
+pq.add(30);
+pq.remove(); //remove the top most element
+System.out.print(pq); //[20,30]
+pq.peek(); //20 the min element will be printed, the top element
+pq.size(); //2
+adding element: O(logn)
+removing element: O(logn)
+if we are adding 'n' element one by one in heap then no. of operations =log(1)+log(2)+...log(n)
+hence : O(nlogn)
 
+MINHEAP v/s ARRAYLIST:
+add(2)
+add(10)
+add(1)
+remove()
+add(0)
+ making a heap using arraylist takes O(nlogn) TC.
+
+MAXHEAP
+PriorityQueue<Integer> pq= new PriorityQueue<>(Collections.reverseOrder());
+
+Problem identification:
+1) kth smallest/largest/closest/frequent/ k sorted array out of n, if we are working on k elemenet
+2) to get better TC
+3) minimize maximize continuous sorting
+
+Find kth smallest element in given array:
+- if we use minheap-> O(nlogn) for adding element, and O(klogn) to remove k-1 elemnts
+public class Solution
+{
+public static void kth(int nums[],int k)
+{
+  PriorityQueue<Integer> pq = new PriorityQueue<>();
+  for(int ele:nums)
+  {
+    pq.add(ele);
+  }
+int n=nums.length;
+  for(int i=1;i<k-1;i++)
+{
+  pq.remove();
+}
+System.out.print(pq.peek());
+
+}}-->but the time complezity is O(nlogn)
+
+class Solution
+{
+public void kthSmallest(int[]nums,int k)
+{
+  PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+  for(int ele:nums)
+  {
+  pq.add(ele);
+  if(pq.size()>k) pq.remove();
+    }
+System.out.print(pq.peek());
+}} -->TC: O(nlogk) better than nlogn
+
+find kth largest element in a given array
+class Solution
+{
+public void kthLargest(int[]nums,int k)
+{
+  PriorityQueue<Integer> pq = new PriorityQueue<>();
+  for(int ele:nums)
+  {
+  pq.add(ele);
+  if(pq.size()>k) pq.remove();
+  }
+System.out.print(pq.peek());
+}}
+
+INTERVIEW QUESTION:
+sort a k sorted array(sort nearly sorted array)
+arr{6,5,3,2,8,10,9} k=3
+-every element is either sorted in its correct position or at max k distance far from its 
+sorted positioneither from right side or from left side
+
+{6,5,3,2,8,10,9}
+{2,3,5,6,8,9,10}
+
+-make a minheap
+-add elements in the minheap,whenever the size becomes greater than k+1 add the topmost 
+element in ans[]
+-then add the remaining elements in ans
+
+class Solution
+{
+public void partialsort(int[]nums,int k)
+{
+  PriorityQueue<Integer> pq = new PriorityQueue<>();
+  List<Integer> ans = new ArrayList<>();
+  for(int ele: nums)
+  {
+    pq.add(ele);
+  if(pq.size()>k) ans.add(pq.remove());
+  }
+  while(pq.size()>0)
+    {
+      ans.add(pq.remove());
+    }
+}}
+
+
+Questions:
+Leetcode 973
