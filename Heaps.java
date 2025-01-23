@@ -85,3 +85,89 @@ class Solution {
             return ans;
         }
 }
+
+//Leetcode 658
+class Solution {
+    class Pair implements Comparable<Pair>
+    {
+        int p;
+        int q;
+        //no. and diff
+        Pair(int p,int q)
+        {
+            this.p=p;
+            this.q=q;
+        }
+        public int compareTo(Pair other)
+        {
+            if(this.q==other.q)
+            {
+                return this.p-other.p; //sort by val
+            }
+            return this.q-other.q; //sort by diff
+        }
+    }
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        PriorityQueue<Pair> pq= new PriorityQueue<>(Collections.reverseOrder());
+        for(int i=0;i<arr.length;i++)
+        {
+            int p=arr[i];
+            int q=Math.abs(arr[i]-x);
+            Pair s= new Pair(p,q);
+            pq.add(s);
+            if(pq.size()>k) pq.remove();
+        }
+        List<Integer> ans =new ArrayList<>();
+        while(!pq.isEmpty())
+        {
+            ans.add(pq.remove().p);
+        }
+        Collections.sort(ans);
+        return ans;
+
+    }
+}
+
+//Leetcode 347
+class Solution {
+    class Pair implements Comparable<Pair>
+    {
+        int ele;
+        int freq;
+        Pair(int ele,int freq)
+        {
+            this.ele=ele;
+            this.freq=freq;
+        }
+        public int compareTo(Pair p)
+        {
+            return this.freq-p.freq;
+        }
+    }
+    public int[] topKFrequent(int[] nums, int k) {
+       int [] ans= new int[k];
+       HashMap<Integer,Integer> map=new HashMap<>();
+       
+       for(int ele: nums)
+       {
+        if(map.containsKey(ele))
+        { int freq=map.get(ele);
+            map.put(ele,freq+1);}
+          else map.put(ele,1);
+       }
+     PriorityQueue<Pair> pq= new PriorityQueue<>();
+     for(int ele:map.keySet())
+     {
+        Pair p= new Pair(ele,map.get(ele));
+        pq.add(p);
+        if(pq.size()>k) pq.remove();
+     }
+     for(int i=0;i<k;i++)
+     {
+        Pair p=pq.remove();
+        ans[i]=p.ele;
+     }
+
+       return ans;
+    }
+}b
