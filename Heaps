@@ -130,8 +130,71 @@ arr={7,8,18,4,9,6} k=3 x=8
 -traverse in ele-> store ele,freq in hashmap: O(n)
 -the elements in hashmap is considered as a pair and is added in k size minheap
 
+//Leetcode 1046
+-method-1: use arraylist and sorting
+-at every step we are taking out 2 largest elements=> use maxheap
+-add elements in heap
+-we have at max n elements in heap so insertion and removal will take log n time
+-while heap not empty: remove 2 elements and add the diffrence between the 2 elements in the heap
+the element in last will be ans
+-TC:O(nlogn)
+
+Minimum cost to connect all ropes:
+arr={2,7,4,1,8}
+-I can connect 2 ropes at a time and the cost of joing is sum of length of ropes
+-2 samllest rope connected and added in the heap
+2 7 4 1 8
+(2+1)-> 3 7 4 8
+(3+4)-> 7 7 8
+(7+7)-> 14+8 =22
+
+public int minCost(int nums[])
+{
+   PriorityQueue<Integer> pq = new PriorityQueue<>();
+   for(int i=0;i<nums.length;i++)
+   {
+     pq.add(nums[i]);
+   }
+int cost=0;
+  while(!pq.isEmpty())
+{
+   int a= pq.remove();
+   int b=pq.remove();
+   int c=a+b;
+    pq.add(c);
+  cost+=c;
+}
+return cost;
+}
+
+//Leetcode 373:
+-maxheap 
+-travesrse in 2 arrays ans insert in the maxheap
+-make a Pair and sum
+-insert until size<k
+-when the size becomes k 
+
 Questions:
 Leetcode 973
 Leetcode 658
 Leetcode 347
-Leetcode 1636 ->to do
+Leetcode 1636 
+Leetcode 1046
+Leetcode 703
+Leetcode 373
+
+<use the notes pw>
+TO do:
+Leetcode 767
+Leetcode 451
+Leetcode 1405
+Leetcode 1642
+Leetcode 1054
+Leetcode 2182
+Leetcode 2208
+Leetcode 1383
+Leetcode 23
+Leetcode 480
+Leetcode 1354
+Leetcode 1439
+Leetcode 295
