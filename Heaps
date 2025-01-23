@@ -111,5 +111,27 @@ public void partialsort(int[]nums,int k)
 
 if adding an object in priority use use comparable
 
+Leetcode 658
+arr={7,8,18,4,9,6} k=3 x=8
+-8 se close jitne bhi no., 3 sabse zyada paas
+=7,8,9
+-absolute diff=> store and min abs dist to be returned
+-not neceessary x belongs to array
+-if abs becomes same-> a is closer to x if |x-a|<|x-b| and if 
+|x-a|==|x-b| then if a<b then a is closer
+-travel in array 
+-insert no. and diff from x in heap
+-MaxHeapfo
+
+//Leetcode 347:
+-return those elements which come in the array maximum no. of times
+-make a hashmap-> store element and its freq
+-in the ques its given each distinct element has a unique freq
+-traverse in ele-> store ele,freq in hashmap: O(n)
+-the elements in hashmap is considered as a pair and is added in k size minheap
+
 Questions:
 Leetcode 973
+Leetcode 658
+Leetcode 347
+Leetcode 1636 ->to do
