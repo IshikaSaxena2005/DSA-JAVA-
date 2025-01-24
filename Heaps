@@ -174,6 +174,186 @@ return cost;
 -insert until size<k
 -when the size becomes k 
 
+HEAPS VISUALISATION VIA BINARY TREE:
+minheap: type of binary tree in which the node carries smaller value than its node
+(for both left and right child)
+balanced Binary  Tree:the diffrence between LST and RST is atmax 1
+-minheap is a complete binary tree-> the type of balanced tree where n-1 levels are compelety filled
+and the last level may or may not be completely filled but is filled from left to right 
+-we can create multiple minheaps
+
+addition/insertion:
+1)add ele at the last : O(1)
+2)upheapify : O(logn) ->swapping elements to ensure the parent is smaller than both the childs
+
+IMPLEMENT A MINHEAP BY ARRAY:
+-heap is implemented by array and visualised as a complete binary tree by heap order property(heapify)
+->lc(left child)=2p+1
+->rc(right child)=2p+2
+p: parent
+parent=(child-1)/2
+
+class MinHeap
+{
+ int[]arr;
+ int size=0;
+ MinHeap(int capacity)
+{ 
+ arr=new int[capacity];
+ size=0;
+}
+public void add(int num)
+ {
+//by default the values of an array made in java have zero values
+
+ arr[size++]=num;
+ upheapify(size-1);
+ }
+public void upheapify(int idx)
+{
+if(idx==0) return;
+  int parent=(idx-1)/2;
+  if(arr[idx]<arr[parent])
+   {
+      swap(idx,parent);
+      upheapify(parent);
+   }
+}
+ public void swap(int i,int j)
+{
+   int temp=arr[i];
+   arr[i]=arr[j];
+   arr[j]= temp;
+}
+public int size()
+ {
+  return size;
+ }
+   public int peek()
+   {
+if(size==0) {System.out.print("Minheap is empty"); return -1;}
+     return arr[0];
+   }
+  public int remove()
+  {
+   if(size==0) return -1;
+   int peek=arr[0];
+  swap(0,size-1);
+  size--;
+  downHeapify(0);
+ return peek;
+ }
+public void downHeapify(int i)
+{
+ if(lc>=size) return;
+ if(rc>=size) return;
+ int lc=2*i+1, rc=2*i+2;
+ int minIdx=i;
+ if(arr[lc]<arr[minIdx]) minIdx=lc;
+ if(arr[rc]<arr[minIdx])=minIdx=rc;
+ if(i==minIdx) return;
+ swap(i,minIdx);
+ downHeapify(minIdx);
+}
+}
+public static void main(String[]args)
+{
+ MinHeap pq= new MinHeap(10);
+ pq.add(1);
+ pq.add(2);
+ pq.add(3);
+ System.out.print(pq.size());
+ System.out.print(pq.peek());//min element 
+}
+
+//remove method:
+1)swap arr[0] and arr[size-1] ie last ele
+2) size--
+3)downheapify
+
+IMPLEMENT MAXHEAP USING ARRAY:
+class MaxHeap {
+    int[] arr;
+    int size = 0;
+
+    MaxHeap(int capacity) {
+        arr = new int[capacity];
+        size = 0;
+    }
+
+    public void add(int num) {
+        arr[size++] = num;
+        upHeapify(size - 1);
+    }
+
+    public void upHeapify(int idx) {
+        if (idx == 0) return;
+        int parent = (idx - 1) / 2;
+        if (arr[idx] > arr[parent]) {  // Change condition for max heap
+            swap(idx, parent);
+            upHeapify(parent);
+        }
+    }
+
+    public void swap(int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public int peek() {
+        if (size == 0) {
+            System.out.println("MaxHeap is empty");
+            return -1;
+        }
+        return arr[0];
+    }
+
+    public int remove() {
+        if (size == 0) return -1;
+        int peek = arr[0];
+        swap(0, size - 1);
+        size--;
+        downHeapify(0);
+        return peek;
+    }
+
+    public void downHeapify(int i) {
+        int lc = 2 * i + 1, rc = 2 * i + 2;
+        int maxIdx = i;
+        
+        if (lc < size && arr[lc] > arr[maxIdx]) maxIdx = lc;
+        if (rc < size && arr[rc] > arr[maxIdx]) maxIdx = rc;
+        
+        if (i == maxIdx) return;
+        swap(i, maxIdx);
+        downHeapify(maxIdx);
+    }
+
+    public static void main(String[] args) {
+        MaxHeap pq = new MaxHeap(10);
+        pq.add(1);
+        pq.add(2);
+        pq.add(3);
+        System.out.println(pq.size());  
+        System.out.println(pq.peek()); 
+    }
+}
+
+HEAPSORT: to sort elements by adding the elements to heap TC:(nlogn)
+
+CONVERT BST TO MAXHEAP:
+
+
+
+
+
+
+
 Questions:
 Leetcode 973
 Leetcode 658
