@@ -335,3 +335,121 @@ class Solution {
     }
 }
 
+//Leetcode 295
+//METHOD -1
+// class MedianFinder {
+//     List<Integer> arr=new ArrayList<>();
+
+
+//     public MedianFinder() {
+        
+//     }
+    
+//     public void addNum(int num) {
+//         arr.add(num);
+//     }
+    
+//     public double findMedian() {
+//         Collections.sort(arr);
+//         int n=arr.size();
+//         if(n%2!=0)//odd 
+//         {
+//             return arr.get(n/2);
+//         }
+//         else
+//         return (arr.get(n/2)+arr.get(n/2-1))/2.0;
+//     }
+// }
+//MEthod 2
+//error time limit exceed
+// class MedianFinder {
+//     List<Integer> arr=new ArrayList<>();
+
+
+//     public MedianFinder() {
+        
+//     }
+    
+//     public void addNum(int num) {
+//         arr.add(num);
+//         int i=arr.size()-1;
+//         while(i>0)
+//         {
+//             if(arr.get(i)<arr.get(i-1))
+//             {
+//                 swap(i,i-1);
+//                 i--;
+
+//             }
+//             else break;
+//         }
+//     }
+//     public void swap(int i,int j)
+//     {
+//         int temp=arr.get(i);
+//         arr.set(i,arr.get(j));
+//         arr.set(j,temp);
+//     }
+//     public double findMedian() {
+//         Collections.sort(arr);
+//         int n=arr.size();
+//         if(n%2!=0)//odd 
+//         {
+//             return arr.get(n/2);
+//         }
+//         else
+//         return (arr.get(n/2)+arr.get(n/2-1))/2.0;
+//     }
+// }
+//method -3(using heap)
+import java.util.PriorityQueue;
+import java.util.Collections;
+
+class MedianFinder {
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    
+    public MedianFinder() {
+    }
+    
+    public void addNum(int num) {
+        if(maxHeap.size() == 0) {
+            maxHeap.add(num);
+        } else {
+            if(num < maxHeap.peek()) {
+                maxHeap.add(num);
+            } else {
+                minHeap.add(num);
+            }
+        }
+        
+        // Balance the heaps
+        //so that donp meh sirf ekk ele ka antar ho
+        if(maxHeap.size() == minHeap.size() + 2) {
+            int top = maxHeap.remove();
+            minHeap.add(top);
+        }
+        if(minHeap.size() == maxHeap.size() + 2) {
+            int top = minHeap.remove();
+            maxHeap.add(top);
+        }
+    }
+    
+    public double findMedian() {
+        if(maxHeap.size() == minHeap.size()) {
+            return (maxHeap.peek() + minHeap.peek()) / 2.0;
+        } else if(maxHeap.size() > minHeap.size()) {
+            return maxHeap.peek();
+        } else {
+            return minHeap.peek();
+        }
+    }
+}
+
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder obj = new MedianFinder();
+ * obj.addNum(num);
+ * double param_2 = obj.findMedian();
+ */
