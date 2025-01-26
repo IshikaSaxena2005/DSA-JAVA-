@@ -347,10 +347,34 @@ class MaxHeap {
 HEAPSORT: to sort elements by adding the elements to heap TC:(nlogn)
 
 A sorted array is always a minheap but visa versa is not true
-CONVERT BST TO MAXHEAP:
 
-
-s
+CHECK IF MAXHEAP:
+public class Solution
+{
+ public boolean isMaxHeap(Node root)
+ {
+   return isHeap(root) && isCBT(root);
+ }
+ private boolean isHeap(Node root)
+ {
+  if(root==null) return true;
+ if(root.left!=null)
+{
+ if(root.val<root.left.val)  return false;
+}
+ if(root.right!=null)
+  {
+    if(root.val<root.right.val) return false;
+  }
+ return isHeap(root.left) && isHeap(root.right);
+ }
+public boolean isCBT(Node root)
+{
+  if(root==null) return true;
+ if(i>=n) return false;
+ return isCBT(root.left,2*i+1,n) &&isCBT(root.right,2*i+1,n);
+}
+}
 
 
 
