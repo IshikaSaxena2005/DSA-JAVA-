@@ -1,1 +1,134 @@
+HEAPS AND PRIORITY QUEUE:
+1)Leetcode 703:
+ class KthLargest {
+        private PriorityQueue<Integer> p= new PriorityQueue<>();
+        private int k;
+    public KthLargest(int k, int[] nums) {
+        this.k=k;
+       p= new PriorityQueue<>();
+       for(int num:nums)
+       {
+        p.add(num);
+        if(p.size()>k) p.remove();
+       }
+    }
+    
+    public int add(int val) {
+        p.add(val);
+        if(p.size()>k) p.remove();
+         return p.peek();
+    }
+   
+}
+
+--Method-2 Using ArrayList:
+class KthLargest
+{
+  List arr;
+  int k;
+  public kthLargest(int k,int[]nums)
+  {
+    this.k=k;
+    arr= new ArrayList();
+    for(int i=0;i<nums.length;i++)
+    {
+    arr.add(nums[i]);
+    }
+  }
+public int add(int val)
+{
+    arr.add(val);
+    Collections.sort(arr);
+    reurn arr.get(arr.size()-k);
+}
+}
+
+
+2)LAST STONE WEIGHT:
+-at each step 2 heaviest stones are taken ans smashed together
+-if x==y >>both stones destroyed
+-if x<y >> x is destroyed and y stone has new weight y-x
+
+-using MAXHEAP:
+lass Solution{
+    public int lastStoneWeight(int[] stones) {
+          PriorityQueue<Integer> pq= new PriorityQueue<>(Collections.reverseOrder());
+          int n=stones.length;
+          for(int i=0;i<n;i++)
+          {
+            pq.add(stones[i]);
+          }
+          while(pq.size()>1)
+          {
+            int a=pq.remove();
+            int b=pq.remove();
+            int c= a-b;
+           if(c>0) pq.add(c);
+          }
+          if(pq.isEmpty()) return 0;
+          return pq.peek();
+
+    }
+}
+
+--using Binary Search:
+public class Solution
+{
+  public int lastStone(int[]stones)
+    {
+      int n=stones.length;
+Arrays.sort(stones);
+while(n>1)
+{
+    int curr=stones[n-1]-stones[n-2];
+    n-=2;
+    if(curr>0)
+    { 
+    int l=0;
+int r=n;
+    while(l<r)
+{  
+    int mid=(l+r)/2;
+if(stones[mid]<curr)
+      {
+          l=mid+1;
+      }
+else r=mid;
+    }
+      }
+int pos=l;
+n++;
+stones = Arrays.copyOf(stones, n);
+                for (int i = n - 1; i > pos; i--) {
+                    stones[i] = stones[i - 1];
+                }
+                stones[pos] = cur;
+}
+    }
+return n>0? stones[0]:0;
+}
+
+--using normal sorting
+public class Solution {
+    public int lastStoneWeight(int[] stones) {
+        List stoneList = new ArrayList<>();
+        for (int stone : stones) {
+            stoneList.add(stone);
+        }
+
+        while (stoneList.size() > 1) {
+            Collections.sort(stoneList);
+            int cur = stoneList.remove(stoneList.size() - 1) -
+                      stoneList.remove(stoneList.size() - 1);
+            if (cur != 0) {
+                stoneList.add(cur);
+            }
+        }
+
+        return stoneList.isEmpty() ? 0 : stoneList.get(0);
+    }
+}
+
+3)Kth closest point from origin:
+Leetcode 973
 
