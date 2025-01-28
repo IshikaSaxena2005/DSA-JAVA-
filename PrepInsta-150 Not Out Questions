@@ -131,4 +131,73 @@ public class Solution {
 
 3)Kth closest point from origin:
 Leetcode 973
+-make a triplet: contsing dist,x,y corr
+-implement comparable
+-make a priorityqueue 
+-iterate in the array:
+mark x
+mark y
+make dist=x*x+y*y
+make a triplet add values: dist,x,y
+then add this triplet in pq
+-if pq.size>k pq.remove()
 
+-make array2d ans
+iterate till i<k
+then make a triplet t=pq.remove()
+add ans[i][0]=t.x ans [i][1]=t.y
+and return the ans
+
+class Solution {
+    class Triplet implements Comparable<Triplet>
+    {
+        int dist;
+        int x;
+        int y;
+        Triplet(int dist,int x,int y)
+        {
+            this.dist=dist;
+            this.x=x;
+            this.y=y;
+        }
+        public int compareTo(Triplet t)
+        {
+            return this.dist-t.dist;
+        }
+    }
+    public int[][] kClosest(int[][] points, int k) {
+        PriorityQueue<Triplet> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for(int i=0;i<points.length;i++)
+        {
+            int x=points[i][0];
+            int y=points[i][1];
+            int dist=x*x+y*y;
+            Triplet t= new Triplet(dist,x,y);
+            pq.add(t);
+            if(pq.size()>k) pq.remove();
+        }
+        int[][]ans= new int[k][2];
+        for(int i=0;i<k;i++)
+        {
+            Triplet t= pq.remove();
+            ans[i][0]=t.x;
+            ans[i][1]=t.y;
+        }
+        return ans;
+    }
+}
+
+4)Kth Largest elementin an array:
+class Solution
+{
+ public int kthLargest(int[]nums,int k)
+{
+PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+  for(int ele:nums)
+{
+  pq.add(ele);
+ if(pq.size()>k) pq.remove();
+}
+return pq.peek();
+}
+}
