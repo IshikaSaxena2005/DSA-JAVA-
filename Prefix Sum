@@ -18,6 +18,10 @@ product=product of all elements
 ans[i]=product/arr[i]
 //write the algo for O(n) and without using the devision operation
 
+Leetcode 2389:
+first sort the array
+then make a prefix sum arr
+iterate thorugh queries[]array given in ques
 
 
 
@@ -29,4 +33,5 @@ Leetcode 1480
 Leetcode 303
 Leetcode 724
 Leetcode 2640
-Letcode 238 -->Interview Ques
+Leetcode 238 -->Interview Ques
+Leetcode 2389
