@@ -176,3 +176,133 @@ class Solution {
         return ans;
     }
 }
+
+//Leetcode 1109
+// class Solution {
+//     public int[] corpFlightBookings(int[][] arr, int n) {
+//         //every array has length 3
+//         int[]ans =new int[n];
+//         for(int i=0;i<arr.length;i++)
+//         {
+//             int first=arr[i][0];
+//             int last=arr[i][1];
+//             int seats=arr[i][2];
+//             for(int j=first-1;j<=last-1;j++)
+//             {
+//                 ans[j]+=seats;
+//             }
+//         }
+//         return ans;
+
+//     }
+// }//TC:O(n^2)
+
+class Solution {
+    public int[] corpFlightBookings(int[][] arr, int n) {
+        int ans[]= new int[n];
+        for(int i=0;i<arr.length;i++)
+        {
+            int first=arr[i][0];
+            int last=arr[i][1];
+            int seats=arr[i][2];
+            ans[first-1]+=seats;
+            if(last<n) ans[last]-=seats;
+        }
+        for(int i=1;i<n;i++)
+        {
+            ans[i]+=ans[i-1];
+        }
+        return ans;
+    }}
+
+
+//Leetcode 560
+// class Solution {
+//     public int subarraySum(int[] arr, int k) {
+//         //-ve numbers are also allowed
+//         //subarrays sum of elements are equal to k
+//         //for each element iterate to the array and update the sum:
+//         //TC:  of brut force O(n^2)
+//         int count=0;
+//         int n=arr.length;
+//         for(int i=0;i<n;i++)
+//         {
+//             int sum=0;
+//             for(int j=i;j<n;j++)
+//             {
+//                 sum+=arr[j];
+//                 if(sum==k) count++;
+//             }
+//         }
+//         return count;
+
+//     }
+// }
+
+//optimized prefix sum:
+//using prefix sum and hashmap
+class Solution {
+    public int subarraySum(int[] arr, int k) {
+        int n=arr.length;
+        int count=0;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        //ele,freq
+        for(int i=1;i<n;i++)
+        {
+            arr[i]+=arr[i-1];
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]==k) count++;
+           int rem=arr[i]-k ;
+           if(map.containsKey(rem)) count+= map.get(rem);
+            if(map.containsKey(arr[i])) 
+            {
+                int freq=map.get(arr[i]);
+                map.put(arr[i],freq+1);}
+            else map.put(arr[i],1);
+            
+           
+        }
+        return count;
+        }
+}
+
+//Leetcode 2483
+class Solution {
+    public int bestClosingTime(String str) {
+        int n = str.length();
+        int[] pre = new int[n + 1];
+        int[] suf = new int[n + 1];
+        
+        // Compute prefix penalties (when the shop is open but no customers come)
+        for (int i = 1; i <= n; i++) {
+            pre[i] = pre[i - 1];
+            if (str.charAt(i - 1) == 'N') {
+                pre[i] += 1;
+            }
+        }
+        
+        // Compute suffix penalties (when the shop is closed but customers come)
+        for (int i = n - 1; i >= 0; i--) {
+            suf[i] = suf[i + 1];
+            if (str.charAt(i) == 'Y') {
+                suf[i] += 1;
+            }
+        }
+        
+        int minPenalty = Integer.MAX_VALUE;
+        int bestHour = 0;
+        
+        // Find the minimum penalty and the earliest hour to close
+        for (int i = 0; i <= n; i++) {
+            int penalty = pre[i] + suf[i];
+            if (penalty < minPenalty) {
+                minPenalty = penalty;
+                bestHour = i;
+            }
+        }
+        
+        return bestHour;
+    }
+}
