@@ -6,8 +6,17 @@ range sume query mutable:
 if we calculate the sum from left to right using for loop the TC: O(n) for one query
 total TC:O(n*m)
 
+Leetcode 2640
+arr={7,2,10,5,3}
+arr={14,9,20,15}
+arr2[i]=arr[i]+max(0,i);
+arr3= prefix sum
 
-
+Leetcode 238
+arr={}
+product=product of all elements
+ans[i]=product/arr[i]
+//write the algo for O(n) and without using the devision operation
 
 
 
@@ -18,3 +27,6 @@ total TC:O(n*m)
 Questions Solved:
 Leetcode 1480
 Leetcode 303
+Leetcode 724
+Leetcode 2640
+Letcode 238 -->Interview Ques
