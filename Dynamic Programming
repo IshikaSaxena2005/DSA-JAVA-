@@ -30,8 +30,78 @@ return dp[n]
 DP:Using previous results to compute the new result
 TABULATION-> Bottom Up DP or iterative DP
 
+FRIENDS PAIRING PROBLEM
+you are given a number 'n', Denoting that there are n friends. Find out the number of ways in 
+which a person can either pair up or stay single.
+// not necessary ki sab pair up hii ho
+//give the number of ways
+//either pair up or not
+a(b,c,d)  ab(c,d)   ac(d,b)
+either alone or together
+pair(n-1)+(n-1)* pair(n-2)
+class Solution
+{
+ public int pair(int n,int[]dp)
+{
+if(n<=2) return n; //for 2 either they can be together or not hence return statement
+if(dp[n]!=-1) retur dp[n];
+return dp[n]= pair(n-1) + (n-1)* pair(n-2); //combination
+                //single    //pair
+
+}
+  public int PairFriend(int n)
+{
+    int dp[]= new int[n+1];
+    Arrays.fill(dp[n],-1);
+    return pair(n,dp);
+}
+}
+
+//Tabulation:
+public int PairFreind(int n)
+{
+int dp[]=new int[n+1];
+if(n>0) dp[1]=1;
+if(n>1) dp[2]=2;
+for(int i=3;i<n;i++)
+{
+  dp[i]=dp[i-1]+ (i-1)* dp[i-2];
+}
+return dp[n];
+}
+
+
+COUNT DEARRANGEMENTS:
+there are n postcards:
+the postman delivers wrong postcards to very house and every house has incorrect postcard
+public int dearrange(int n)
+{
+  if(n==0) return 0;
+  if(n==1) return 1;
+    return (n-1) * (dearrange(n-1)+ dearrange(n-2);
+}
+
+//using dp:
+public int dearrange(int n)
+{
+int dp= new int[n+1];
+    dp[0]=0;
+  dp[1]=0;
+dp[2]=1;
+
+for(int i=3;i<n;i++)
+{
+    dp[i]=(i-1) * (dp[i-1]+dp[i-2]);
+}
+return dp[n];
+}
+
+
+
+
 
 Questions Solved:
 Leetcode 509
 Leetcode 746
 Leetcode 198
+Leetcode 70
