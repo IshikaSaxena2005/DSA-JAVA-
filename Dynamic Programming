@@ -1,1 +1,37 @@
+CheckList:
+Memoization and Tabulation
+1D DP Problems
+2D DP Problems
+Knapsack and Unbounded Knapsack Problems
+DP on Strings
+MCM Problems and DP on Trees
 
+--For time complexity of a recursive code: Count the number of calls
+TC: 
+O(logn)>O(n)>O(nlogn)>O(n^2)>O(n^2logn)>O(n^3)>O(2^n)
+good <--------------------------------------------bad
+
+Using DP for Fibonacci: Recursion Plus memoization => Top Down DP
+fibo(6)
+-using array:size 7
+              DP calls only once
+              The ans of each call is stored in the array
+              for each call it search for its answer in the array
+              Total calls 2n-1
+              SC:O(n) //due to call stack
+              TC: O(n)
+
+-FIBONACCI:
+fibo function
+if(dp[n]!=0) return dp[n]    
+dp[n]=fibo(n-1)+fibo(n-2)
+return dp[n]
+
+DP:Using previous results to compute the new result
+TABULATION-> Bottom Up DP or iterative DP
+
+
+Questions Solved:
+Leetcode 509
+Leetcode 746
+Leetcode 198
