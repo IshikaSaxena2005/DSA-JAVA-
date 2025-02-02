@@ -257,3 +257,60 @@ class Solution {
         }
     return dp[m-1][n-1];
     }}
+
+//Leetcode 64
+class Solution {
+    public int minPathSum(int[][] grid) {
+        //down and right
+        //find the path such that the sum of path is minimum
+        //tabulation method
+        //greedy approach ->check for right and down
+        //optimal substructure-> placing checkpoints
+        //make a prefix sum for 1st row and 1st col
+        //then out of the rightways and downways we take the one with min
+        //dp[i][j]+min(dp[i-1][j],dp[i][j-1])
+        int m=grid.length;
+        int n=grid[0].length;
+        int[][] dp= new int[m][n];
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                dp[i][j]= grid[i][j];
+                if(i==0 & j==0) continue;
+                else if(i==0)dp[i][j]+= dp[i][j-1];
+                else if(j==0) dp[i][j]+= dp[i-1][j];
+                else dp[i][j]= dp[i][j]+Math.min(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+        return dp[m-1][n-1];
+
+    }
+}
+
+//resursion+memoization
+
+class Solution {
+    public int paths(int row,int col,int m,int n,int[][]grid,int[][]dp)
+    {
+        if(row>=m || col>=n) return Integer.MAX_VALUE;
+        int sum=0;
+        if(row==m-1 && col == n-1) return grid[row][col];
+        if(dp[row][col]!=-1) return dp[row][col];
+        int downways=paths(row+1,col,m,n,grid,dp);
+        int rightways=paths(row,col+1,m,n,grid,dp);
+        return dp[row][col]= grid[row][col]+ Math.min(downways,rightways);
+    }
+    public int minPathSum(int[][] grid) {
+        int m=grid.length;
+        int n=grid[0].length;
+        int[][]dp= new int[m][n];
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+        return paths(0,0,m,n,grid,dp);
+    }}
