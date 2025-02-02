@@ -96,6 +96,19 @@ for(int i=3;i<n;i++)
 return dp[n];
 }
 
+//UNIQUE PATHS:(LEETCODE 62)
+//you can go right or down
+//helper func:
+-passing variables 0,0 , m,n(m*n grid),2d dp
+if rows>=m or col>=n return 0
+if row==m-1 and col==n-1 yes reached the correct pos
+if dp[row][col]!=-1 retrun dp[row][col]
+calculate rightways= helper(row,col+1,m,n,dp)
+calculate downways=helper(m+1,n,m,n,dp) 
+return rightways+downways
+
+main func: fill the dp with -1 and then retrun helper(0,0,m,n,dp)
+
 
 
 
@@ -105,3 +118,4 @@ Leetcode 509
 Leetcode 746
 Leetcode 198
 Leetcode 70
+Leetcode 62
