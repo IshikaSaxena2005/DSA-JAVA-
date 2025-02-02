@@ -314,3 +314,55 @@ class Solution {
         }
         return paths(0,0,m,n,grid,dp);
     }}
+
+//Leetcode 1277
+class Solution {
+    public int min(int a,int b,int c)
+    {
+        return Math.min(a,Math.min(b,c));
+    }
+    public int countSquares(int[][] matrix) {
+        int m=matrix.length;
+        int n=matrix[0].length;
+        int count=0;
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(matrix[i][j]==0) continue;
+                if(i>0 && j>0) 
+                {
+                    matrix[i][j]+=min(matrix[i-1][j],matrix[i][j-1],matrix[i-1][j-1]);
+                }
+                count+=matrix[i][j];
+            }
+        }
+        return count;
+    }
+}
+
+//Leetcode 63
+class Solution {
+    public int paths(int row,int col,int m,int n,int [][]grid,int[][]dp)
+    {
+        if(row>=m || col>=n|| grid[row][col]==1) return 0;
+        if(row==m-1 && col==n-1) return 1;
+        if(dp[row][col]!=-1) return dp[row][col];
+        int downways=paths(row+1,col,m,n,grid,dp);
+        int rightways=paths(row,col+1,m,n,grid,dp);
+        return  dp[row][col]=rightways+downways;
+    }
+    public int uniquePathsWithObstacles(int[][] grid) {
+        int m=grid.length;
+        int n=grid[0].length;
+        int[][]dp= new int[m][n];
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+        return paths(0,0,m,n,grid,dp);
+    }
+}
