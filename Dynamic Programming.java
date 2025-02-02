@@ -213,3 +213,47 @@ class Solution {
         return stairs(n,dp);
     }
 };
+
+
+//Leetcode 62
+// class Solution {
+//     public int uniquePaths(int m, int n) {
+//         //row vary from 0 to m-1
+//         //col vary form 0 to n-1
+//         int [][] dp = new int[m][n];
+//         for(int i=0;i<m;i++)
+//         {
+//             for(int j=0;j<n;j++)
+//             {
+//                 dp[i][j]=-1; 
+//             }
+//         }
+//         return paths(0,0,m,n,dp);
+//     }
+//     private int paths(int row,int col,Integer m,Integer n, int[][]dp)  //the Integer will go pass by reference since its value is not change
+//     {
+//         if(row>=m|| col>=n) return 0;
+//         if(row==m-1 && col==n-1) return 1;
+//         if(dp[row][col]!=-1) return dp[row][col];
+//         int rightWays=paths(row,col+1,m,n,dp);
+//         int downWays = paths(row+1,col,m,n,dp);
+//         return dp[row][col]=rightWays+ downWays;
+//     }
+// }//recusion gives time limit exceed
+// // usng dp : TC:O(mn) SC:O(mn)
+
+//method -2 using tabulation
+
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int[][]dp = new int[m][n];
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(i==0||j==0) dp[i][j]=1;
+                else dp[i][j]= dp[i][j-1]+dp[i-1][j];
+            }
+        }
+    return dp[m-1][n-1];
+    }}
