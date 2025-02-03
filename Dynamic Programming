@@ -126,7 +126,7 @@ TC:O(n) SC:O(1)
 
 public int fib(int n)
 {
-  if(n<=1) return 1;
+  if(n<=1) return n;
 int[]dp= new int[3];
 dp[0]=0,dp[1]=1;
 for(int i=2;i<=n;i++)
@@ -148,3 +148,4 @@ Leetcode 64
 Leetcode 1277
 Leetcode 63
 Leetcode 279
+Leetcode 213
