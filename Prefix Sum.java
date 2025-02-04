@@ -9,6 +9,7 @@ class Solution {
      return nums;
     }
 }
+
 //Leetcode 303
 class NumArray {
 int[]arr;
