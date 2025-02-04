@@ -138,6 +138,67 @@ dp[1]=dp[2];
 return dp[2];
 }
 
+------------------------
+    0/1 KNAPSACK
+------------------------
+-maximize profit
+recursive soln: Try out all possible combinations
+class knapsack
+{
+public static in profit(int i,int[]wt,int[]val,int c)
+{
+if(i==wt.length) return 0;
+int skip=profit(i+1,wt,val,c);
+if(wt[i]>c) return skip;//if the current wt is greater than capacity I only need to skip
+
+int take=val[i]+profit(i+1,wt,val,c-wt[i]);
+
+return Math.max(take,skip);
+}
+public static void main(String[]args)
+{
+int[]val={5,3,9,16};
+int[]wt={1,2,8,10};
+int c=8;
+System.out.print(profit(0,wt,val,c);
+}
+}  //TC:O(2^n)
+SC:O(n*C)
+
+//USING DP APPROACH:
+class knapsack
+{
+public static in profit(int i,int[]wt,int[]val,int c,int[][]dp)
+{
+if(i==wt.length) return 0;
+if(dp[i][c]!=-1) return dp[i][c];
+int skip=profit(i+1,wt,val,c,dp);
+if(wt[i]>c) return dp[i][c]=skip;//if the current wt is greater than capacity I only need to skip
+
+int take=val[i]+profit(i+1,wt,val,c-wt[i],dp);
+
+return dp[i][c]= Math.max(take,skip);
+}
+public static void main(String[]args)
+{
+int[]val={5,3,9,16};
+int[]wt={1,2,8,10};
+int c=8;
+int n=wt.length;
+int[][]dp= new int[n][c+1];
+for(int i=0;i<dp.length;i++)
+{
+for(int j=0;j<dp[0].length;j++)
+{
+dp[i][j]=-1;
+}
+}
+System.out.print(profit(0,wt,val,c,dp);
+}
+} TC:O(n*c)
+SCO(n*c)
+
+
 Questions Solved:
 Leetcode 509
 Leetcode 746
