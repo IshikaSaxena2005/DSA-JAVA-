@@ -467,3 +467,109 @@ class Solution {
 
     }
 }
+
+//Leetcode 416
+class Solution {
+    private boolean subset(int i,int[]arr,int target,int[][]dp)
+    {
+        if(i==arr.length)
+        {
+            if(target==0) return true;
+            else return false;
+        }
+        if(dp[i][target]!=-1) return (dp[i][target]==1);
+        boolean ans= false;
+        boolean skip=subset(i+1,arr,target,dp);
+        if(target-arr[i]<0) ans=skip;
+        else
+        {
+            boolean pick=subset(i+1,arr,target-arr[i],dp);
+            ans=pick||skip;
+        }
+        dp[i][target]=(ans)?1:0;
+        return ans;
+    }
+    public boolean canPartition(int[] nums) {
+        //array ko 2 subsets meh batna hai saare elements ko use krna hai so that sum=target
+        int sum=0;
+        for(int ele:nums)sum+=ele;
+        if(sum%2!=0) return false;
+        int target=sum/2;
+        int[][]dp=new int[nums.length][target+1];
+        for(int i=0;i<dp.length;i++)
+        {
+            for(int j=0;j<dp[0].length;j++)
+            {
+                dp[i][j]=-1;
+            }
+
+        }
+        return subset(0,nums,target,dp);
+
+    }//TC:O(n*t);
+    //t is target
+
+}
+
+//Leetcode 2915
+// class Solution {
+//     public int longestLength(int i,List<Integer> nums,int target,int[][]dp)
+//     {
+//         if(target==0)return 0;
+//         if(i==nums.size()) return -1;
+//         if(dp[i][target]!=-1) return dp[i][target];
+//         int skip=longestLength(i+1,nums,target,dp);
+//         int take=-1;
+//         if(nums.get(i)<=target)
+//         {
+//             int next=longestLength(i+1,nums,target-nums.get(i),dp);
+//              if(next!=-1) take=next+1;
+
+//         }
+       
+//         return dp[i][target]=Math.max(take,skip);
+
+//     }
+//     public int lengthOfLongestSubsequence(List<Integer> nums, int target) {
+//         int[][]dp= new int[nums.size()][target+1];
+//         for(int i=0;i<nums.size();i++)
+//         {
+//             for(int j=0;j<dp[0].length;j++)
+//             {
+//                 dp[i][j]=-1;
+//             }
+//         }
+//         int result= longestLength(0,nums,target,dp);
+//         return result<0?-1:result;
+//     }
+// } //this is memoization giving TLE error
+
+// //using TABULATION BOTTOM UP APPRAOCH
+class Solution {
+       public int lengthOfLongestSubsequence(List<Integer> nums, int target) {
+       int n=nums.size();
+       int[][]dp= new int[n+1][target+1];
+       for(int i=0;i<=n;i++)
+       {
+        Arrays.fill(dp[i],-1);
+       }
+       //if target is 0 then the length of subsequence is 0
+       for(int i=0;i<=n;i++)
+       {
+        dp[i][0]=0;
+       }
+       for(int i=n-1;i>=0;i--)
+       {
+        for(int t=0;t<=target;t++)
+        {
+            int skip=dp[i+1][t];
+            int take=-1;
+            if(nums.get(i)<=t && dp[i+1][t-nums.get(i)]!=-1)
+            {
+                take=dp[i+1][t-nums.get(i)]+1;
+            }
+            dp[i][t]=Math.max(skip,take);
+        }
+       }
+         return dp[0][target] < 0 ? -1 : dp[0][target];
+       }}
