@@ -568,8 +568,90 @@ class Solution {
             {
                 take=dp[i+1][t-nums.get(i)]+1;
             }
+            
             dp[i][t]=Math.max(skip,take);
         }
        }
          return dp[0][target] < 0 ? -1 : dp[0][target];
        }}
+
+//Leetcode 494
+//there is a possbility of negative numbers
+// class Solution {
+//     public int ways(int i,int[]arr,int target)
+//     {
+//         if(i==arr.length)
+//         {
+//             if(target==0) return 1; //1 valid way
+//             else return 0;
+//         }
+
+//          //no will be subtracted for add
+//         int add=ways(i+1,arr,target-arr[i]);
+//         int sub=ways(i+1,arr,target+arr[i]);
+//         return add+sub;
+       
+//     }
+//     public int findTargetSumWays(int[] arr, int target) {
+//         return ways(0,arr,target);
+//     }
+// } //TC:O(2^n)
+
+//using DP:
+class Solution {
+    static int sum;
+
+    public int ways(int i, int[] arr, int res, int target, int[][] dp) {
+        if (i == arr.length) {
+            return res == target ? 1 : 0;
+        }
+        if (dp[i][res + sum] != -1) return dp[i][res + sum];
+
+        int add = ways(i + 1, arr, res + arr[i], target, dp);
+        int sub = ways(i + 1, arr, res - arr[i], target, dp);
+
+        return dp[i][res + sum] = add + sub;
+    }
+
+    public int findTargetSumWays(int[] arr, int target) {
+        sum = 0;
+        for (int ele : arr) sum += ele;
+
+        // Check for valid target range
+        if (Math.abs(target) > sum) return 0;
+
+        int[][] dp = new int[arr.length][2 * sum + 1];
+
+        for (int i = 0; i < dp.length; i++) {
+            for (int j = 0; j < dp[0].length; j++) {
+                dp[i][j] = -1;
+            }
+        }
+
+        return ways(0, arr, 0, target, dp);
+    }
+}
+
+//Leetcode 2786
+class Solution {
+    public long maxScore(int[] nums, int x) {
+        int n = nums.length;
+        long evenMax = (nums[0] % 2 == 0) ? nums[0] : Long.MIN_VALUE;
+        long oddMax = (nums[0] % 2 != 0) ? nums[0] : Long.MIN_VALUE;
+
+        for (int i = 1; i < n; i++) {
+            if (nums[i] % 2 == 0) {
+                // Avoid using Long.MIN_VALUE directly in computations
+                long newEven = evenMax != Long.MIN_VALUE ? evenMax + nums[i] : Long.MIN_VALUE;
+                long newOdd = oddMax != Long.MIN_VALUE ? oddMax + nums[i] - x : Long.MIN_VALUE;
+                evenMax = Math.max(newEven, newOdd);
+            } else {
+                long newOdd = oddMax != Long.MIN_VALUE ? oddMax + nums[i] : Long.MIN_VALUE;
+                long newEven = evenMax != Long.MIN_VALUE ? evenMax + nums[i] - x : Long.MIN_VALUE;
+                oddMax = Math.max(newOdd, newEven);
+            }
+        }
+
+        return Math.max(evenMax, oddMax);
+    }
+}
