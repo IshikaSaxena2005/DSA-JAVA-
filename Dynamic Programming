@@ -196,8 +196,81 @@ dp[i][j]=-1;
 System.out.print(profit(0,wt,val,c,dp);
 }
 } TC:O(n*c)
-SCO(n*c)
+SC:O(n*c)
 
+SUBSET SUM:
+//using recursion
+tell if there exist a subset of the array with sum==target
+-pick or not pick
+class Solution
+{
+public static void main(String[]args)
+{
+  int arr={8,10,2,5};
+  int target=8;
+  int n=arr.length;
+  if(n==0) return 0;
+  return subset(0,arr,target);
+}
+public boolean subset(int i,int[]arr,int target)
+{
+    if(i==arr.length)
+    {
+      if(target==0) return true;
+      else return false;
+    }
+    boolean ans=false;
+    boolean skip=subset(i+1,arr,target);
+    if(target-arr[i]<0) return skip; //negative hogya
+    else
+    {
+    boolean take=subset(i+1,arr,target-arr[i]);
+      ans=take || skip;
+    }
+return ans;    
+}
+}
+
+//using dp
+class Solution
+{
+public static void main(String[]args)
+{
+  int arr={8,10,2,5};
+  int target=8;
+  int n=arr.length;
+  int[][]dp= new int[n][target+1];
+  for(int i=0;i<dp.length;i++)
+{
+  for(int j=0;j<dp[0].length;j++)
+{ 
+  dp[i][j]=-1;
+  }
+}
+  if(n==0) return 0;
+  return subset(0,arr,target,dp);
+}
+public boolean subset(int i,int[]arr,int target,int[][]dp)
+{
+    if(i==arr.length)
+    {
+      if(target==0) return true;
+      else return false;
+    }
+  if(dp[i][target]!=-1) return (dp[i][target]==1);
+    boolean ans=false;
+    boolean skip=subset(i+1,arr,target,dp);
+    if(target-arr[i]<0) return skip; //negative hogya
+    else
+    {
+    boolean take=subset(i+1,arr,target-arr[i],dp);
+      ans=take || skip;
+    }
+    if(ans) dp[i][target]==1;
+else dp[i][target]=0;
+return ans;    
+}
+}
 
 Questions Solved:
 Leetcode 509
@@ -210,3 +283,6 @@ Leetcode 1277
 Leetcode 63
 Leetcode 279
 Leetcode 213
+Leetcode 416
+Leetcode 2915
+Leetcode 494
