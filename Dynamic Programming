@@ -273,6 +273,89 @@ return ans;
 }
 }
 
+TABULATION IN KNAPSACK PROBLEM:
+1) Thinking of tabulation
+2)Thinking of Recursion-> top to down -> bottom up
+
+We will se how to solve knapsack using the 2nd appraoch
+//we travel in the reverse direction
+//i-> n-1 to 1
+//base case will change if(n<0) return 0
+//make formula
+if(wt[i]>c) profit(i,c)= profit(i-1,c)
+else
+{
+profit(i,c)=max(val[i]+profit(i-1,c-wt[i],profit(i-1,c))
+ }                               //take      //skip
+
+//formula:
+dp[i][c]=max(val[i]+dp[i-1][c-wt[i]],dp[i-1][c]
+
+class Solution
+{
+  public static void main(String[]args)
+{
+  int[]val={5,3,9,16};
+  int[]wt={1,28,10};
+  int c=8;
+  int n=wt.length;
+  int[][]dp= new int[n][c+1];
+  for(int i=0;i<n;i++)
+  {
+    for(int j=0;j<c+1;j++)
+    {
+      int skip=(i>0)?dp[i-1][j]: 0;
+        if(wt[i]>j) dp[i][c]=skip;
+        else
+          {
+        int pick=val[i];
+        pick+=((i>0)? + dp[i-1][c-wt[i]]:0);
+        dp[i][c]=Math.max(pick,skip);
+          }
+    }
+  }
+    System.out.print(dp[n-1][c]);
+}
+}
+
+SUBSET SUM USING TABULATION:
+//peeche chalae
+//PARTITION SUM QUESTION
+class Solution
+{
+  public boolean canPartition(int[]nums)
+  {
+    int sum=0;
+    int n=nums.length;
+    for(int ele:nums) sum+=ele;
+    if(sum%2!=0) return false;
+    int target=sum/2;
+    int[][]dp= new int[n][target+1];
+    for(int i=0;i<dp.length;i++)
+    {
+      for(int j=0;j<dp[0].length;j++)
+      {
+        boolean ans=false;
+        boolean skip=(i>0)?(dp[i-1][j]==1) :(j==0);
+                            //false          //true
+      if(j-arr[j]<0) ans=skip;
+else
+    {
+        boolean pick=(i>0)?dp[i-1][j-arr[i]]==1): (j==0);
+        ans =pick || skip;
+    }
+    dp[i][j]?(ans)?1:0;
+      }
+    }
+    return (dp[n-1][target]==1);
+  }
+}
+
+---------------------------
+LONGEST COMMON SUBSEQUENCE
+---------------------------
+subsequence and subset is almost same but order matter in subsequence
+
 Questions Solved:
 Leetcode 509
 Leetcode 746
