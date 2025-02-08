@@ -826,6 +826,7 @@ class Solution {
         }
         
     }
+    
     public int longestCommonSubsequence(String text1, String text2) {
         StringBuilder a = new StringBuilder(text1);
         StringBuilder b = new StringBuilder(text2);
