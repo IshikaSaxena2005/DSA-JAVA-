@@ -692,3 +692,27 @@ class Solution {
         //these Strings are pass by value hence memory wastage since the copies of these string is going
         //StringBuilder is paas by reference
     }
+
+    //Using Tabulation:
+     public int longestCommonSubsequence(String text1, String text2) {
+        StringBuilder a= new StringBuilder(text1);
+        StringBuilder b= new StringBuilder(text2);
+        int m=a.length();
+        int n=b.length();
+        dp=new int[m][n];
+        for(int i=0;i<dp.length;i++)
+        {
+            for(int j=0;j<dp[0].length;j++)
+            {
+                int p=(i>=1 && j>=1)?dp[i-1][j-1]:0;
+                int q=(j>=1) ? dp[i][j-1]:0;
+                int r=(i>=1)?dp[i-1][j]:0;
+                if(a.charAt(i)==b.charAt(j)) dp[i][j]=1+p;
+                else dp[i][j]=Math.max(q,r);
+
+            }
+             
+        }
+         return dp[m-1][n-1];
+     }
+}
