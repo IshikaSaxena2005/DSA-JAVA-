@@ -380,6 +380,7 @@ for(int j=0;j<dp[0].length;j++)
   dp[i][j]=-1;
 }
 }
+
 System.out.print(profit(0,wt,val,c,dp));
 }
 Questions Solved:
