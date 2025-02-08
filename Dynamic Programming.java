@@ -767,3 +767,156 @@ class Solution {
         return ans;
     }
 }
+
+//Leetcode 516
+class Solution {
+    public int lcs(int i,int j,StringBuilder a,StringBuilder b,int[][]dp)
+    {
+        if(i<0||j<0) return 0;
+        if(dp[i][j]!=-1) return dp[i][j];
+        if(a.charAt(i)==b.charAt(j))
+        {
+            return dp[i][j]=1+lcs(i-1,j-1,a,b,dp);
+        }
+        else
+        {
+            return dp[i][j]=Math.max(lcs(i,j-1,a,b,dp),lcs(i-1,j,a,b,dp));
+        }
+    }
+    public int longestCommonSubsequnce(String text1,String text2)
+    {
+        StringBuilder a =new StringBuilder(text1);
+        StringBuilder b= new StringBuilder(text2);
+        int m=a.length();
+        int n= b.length();
+        int[][]dp= new int[m][n];
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+        return lcs(m-1,n-1,a,b,dp);
+    }
+    public String reverse(String s)
+    {
+        StringBuilder sb= new StringBuilder(s);
+        sb.reverse();
+        s=sb.toString();
+        return s;
+    }
+    public int longestPalindromeSubseq(String s) {
+        return longestCommonSubsequnce(s,reverse(s));
+    }
+}
+
+//Leetcode 1312
+class Solution {
+     public int lcs(int i,int j,StringBuilder a, StringBuilder b,int[][]dp) {
+       if(i<0||j<0) return 0;
+       if(dp[i][j]!=-1) return dp[i][j];
+        if(a.charAt(i)==b.charAt(j))
+        {
+            return dp[i][j]=1+lcs(i-1,j-1,a,b,dp);
+        }
+        else
+        {
+            return dp[i][j]=Math.max(lcs(i-1,j,a,b,dp),lcs(i,j-1,a,b,dp));
+        }
+        
+    }
+    public int longestCommonSubsequence(String text1, String text2) {
+        StringBuilder a = new StringBuilder(text1);
+        StringBuilder b = new StringBuilder(text2);
+        int m=a.length();
+        int n= b.length();
+        int [][]dp=new int[m][n];
+        for(int i=0;i<dp.length;i++)
+        {
+            for(int j=0;j<dp[0].length;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+       return lcs(m-1,n-1,a,b,dp);
+        
+    }
+    public String reverse(String s)
+    {
+        StringBuilder sb = new StringBuilder(s);
+        sb.reverse();
+        s=sb.toString();
+        return s;
+    }
+    public int longestPalindromeSubseq(String s) {
+        return longestCommonSubsequence(s, reverse(s));
+    }
+    public int minInsertions(String s) {
+        return s.length()-longestPalindromeSubseq(s);
+    }
+}
+
+//LEetcode 583
+class Solution {
+    public int minDistance(String word1, String word2) {
+        //find LCS for word1 and word2
+        //we know the lcs_len for each
+        //no. of deletions for word1=word1.length-lcs_len
+        //no of deletions for word2=wprd2.length-lcs_len
+        //total deletions=deletion1-deletion2
+        int m=word1.length();
+        int n=word2.length();
+        int[][]dp= new int[m+1][n+1];
+        for(int i=1;i<=m;i++)
+        {
+            for(int j=1;j<=n;j++)
+            {
+                if(word1.charAt(i-1)==word2.charAt(j-1))
+                {
+                    dp[i][j]=1+dp[i-1][j-1];
+                }
+                else
+                {
+                    dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        int lcs_len=dp[m][n];
+        return (m-lcs_len)+(n-lcs_len);
+    }
+}
+
+//Leetcode 72
+class Solution {
+    public int minSteps(int i,int j,StringBuilder a,StringBuilder b,int[][]dp)
+    {
+        if(i==-1) return j+1;
+        if(j==-1) return i+1;
+        if(dp[i][j]!=-1) return dp[i][j];
+        if(a.charAt(i)==b.charAt(j))
+        return dp[i][j]=minSteps(i-1,j-1,a,b,dp);
+        else
+        {
+            int del=minSteps(i-1,j,a,b,dp);
+            int ins=minSteps(i,j-1,a,b,dp);
+            int rep=minSteps(i-1,j-1,a,b,dp);
+            return dp[i][j]=  1+Math.min(del,Math.min(ins,rep));
+        }
+
+    }
+    public int minDistance(String word1, String word2) {
+        StringBuilder a= new StringBuilder(word1);
+        StringBuilder b= new StringBuilder(word2);
+        int m= a.length(),n=b.length();
+        int dp[][]=new int[m][n];
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<dp[0].length;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+        return minSteps(m-1,n-1,a,b,dp);
+    }
+}
