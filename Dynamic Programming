@@ -356,6 +356,32 @@ LONGEST COMMON SUBSEQUENCE
 ---------------------------
 subsequence and subset is almost same but order matter in subsequence
 
+UNBOUNDED KNAPSACK:
+Har item ki unlimited qunatity hai
+public static int profit(int i,int[]val,int c,int[][]dp)
+{
+if(i==wt.length) return 0;
+if(dp[i][c]!=0) return dp[i][c];
+int skip= profit(i+1,wt,val,c,dp);
+if(wt[i]>c) return dp[i][c]=skip;
+int pick=val[i]+profit(i,wt,val,c-wt[i],dp);
+return dp[i][c]=Math/max(skip,pick);
+}
+public static void main(String[]args)
+{
+  int[]val={6,3,7,25};
+  int[]wt={2,2,8,9};
+  int n=wt.length;
+  int[][]dp=int [n][c+1];
+for(int i=0;i<dp.length;i++)
+{
+for(int j=0;j<dp[0].length;j++)
+{
+  dp[i][j]=-1;
+}
+}
+System.out.print(profit(0,wt,val,c,dp));
+}
 Questions Solved:
 Leetcode 509
 Leetcode 746
@@ -371,3 +397,4 @@ Leetcode 416
 Leetcode 2915
 Leetcode 494
 Leetcode 2786
+Leetcode 322
