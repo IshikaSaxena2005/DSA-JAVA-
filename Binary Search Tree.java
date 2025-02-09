@@ -10,7 +10,6 @@ public TreeNode searchBST(TreeNode root, int val) {
         return searchBST(root.right, val);
     }
 }
-
 //Leetcode 701
 //if val<=root.val
 //if left side is null then root.left=new TreeNode(val)
@@ -45,7 +44,6 @@ class Solution {
         return root;
     }
 }
-
 //Leetcode 94
 class Solution
 {
