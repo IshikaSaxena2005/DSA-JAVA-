@@ -921,3 +921,23 @@ class Solution {
         return minSteps(m-1,n-1,a,b,dp);
     }
 }
+
+//Leetcode 96
+class Solution {
+    public int numTrees(int n) {
+        //1 d dp and nested loops
+        if(n<=1) return 1;
+        int[]dp= new int[n+1];
+        dp[0]=1;
+        dp[1]=1;
+        dp[2]=2;
+        for(int i=3;i<=n;i++)
+        {
+            for(int j=1;j<=i;j++) //j can be 1,2...
+            {
+                dp[i]+=(dp[j-1]*dp[i-j]);
+            }
+        }
+        return dp[n];
+    }
+}
