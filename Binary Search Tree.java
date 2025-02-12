@@ -9,6 +9,7 @@ public TreeNode searchBST(TreeNode root, int val) {
         }
         return searchBST(root.right, val);
     }
+        
 }
 //Leetcode 701
 //if val<=root.val
