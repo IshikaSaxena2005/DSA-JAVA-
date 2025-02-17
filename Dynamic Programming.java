@@ -972,3 +972,73 @@ class Solution {
     return count;
     }
 }
+
+//LONGEST COMMON SUBSTRING
+int m=a.length(), n=b.length();
+int[][]dp= new int[m+1][n+1];
+int max=0;
+for(int i=1;i<=m;i++)
+{
+  for(int j=1;j<=n;j++)
+  {
+    if(a.charAt(i-1)==b.charAt(j-1)
+    {
+      dp[i][j]=1+dp[i-1][j-1];
+    }
+    else
+    {  
+      dp[i][j]=0;
+    }
+    max=Math.max(max,dp[i][j]);
+  }
+}
+return max;
+
+//DIAMETER OF BINARY TREE
+//METHOD !: Using binary tree
+class Solution {
+    public int levels(TreeNode root)
+    {
+        if(root==null) return 0;
+        return 1 + Math.max(levels(root.left),levels(root.right));
+    }
+    public int diameterOfBinaryTree(TreeNode root) {
+        if(root==null) return 0;
+        int dia= levels(root.left)+levels(root.right);
+        int leftDia= diameterOfBinaryTree(root.left);
+        int rightDia=diameterOfBinaryTree(root.right);
+        return Math.max(dia,Math.max(leftDia,rightDia));
+    }
+}
+
+//the max path will always pass through root-False (it is not necessary)
+
+//METHOD 2
+//memoization using HashMap<TreeNode,Integer>
+class Solution
+{
+    static Map<TreeNode,Integer> dp;
+    public int levels(TreeNode root)
+    {
+        if(root==null) return 0;
+        if(dp.containsKey(root)) return dp.get(root);
+        int leftLevels=levels(root.left);
+        int rightLevels=levels(root.right);
+        dp.put(root,1+Math.max(leftLevels,rightLevels)); //in put it is the ans of this root is this
+        return dp.get(root);
+    }
+    public int diameter(TreeNode root)
+    {
+        if(root==null) return 0;
+        int myDia=levels(root.left)+levels(root.right);
+        int leftDia=diameter(root.left);
+        int rightDia=diameter(root.right);
+        return Math.max(myDia,Math.max(leftDia,rightDia));
+    }
+    public int diameterOfBinaryTree(TreeNode root)
+    {
+        dp=new HashMap<>();
+        return diameter(root);
+    }
+}
+
