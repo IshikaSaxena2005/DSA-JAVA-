@@ -1042,3 +1042,20 @@ class Solution
     }
 }
 
+//using memoization
+// public int levels(TreNode root,int[]data)
+// {
+//     if(root==null) return 0;
+//     int leftLevels=levels(root.left);
+//     int rightLevels=levels(root.right);
+//     int path=leftLevels+rightLevels;
+//     dia[0]=Math.max(dia[0],path);
+//     return 1+Math.max(leftLeveles+rigthLevels);
+// }
+// public int diameterOfBinarayTree(TreeNode root)
+// {
+//     int[]dia={0};
+//     leveles(root,dia);
+//     return dia[0];
+// }
+
