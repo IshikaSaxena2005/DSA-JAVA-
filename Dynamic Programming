@@ -409,7 +409,10 @@ for(int i=1;i<=m;i++)
 }
 return max;
 
-
+BINARY TREE MAX PATH SUM:
+-recusion on a func linesum
+sum=root.val+lineSum(left)+lineSum(right)  (this is the path sum)
+maxSum=max(sum,lineSum)
 Questions Solved:
 Leetcode 509
 Leetcode 746
@@ -434,3 +437,4 @@ Leetcode 96
 Leetcode 1092
 Leetcode 647
 Leetcode 543
+Leetcode 124
