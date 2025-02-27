@@ -3,7 +3,8 @@ Types of Trees:
    Binary Tree: any node can have 0,1,2 children
    Binary Search Tree: the left child nodes are smaller than root node, the right child node are bigger than root node
    AVL Tree: BST which are self balanced
-   
+
+
 Creation of Tree:
   class Node
 {
