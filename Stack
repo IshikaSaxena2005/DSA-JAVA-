@@ -57,9 +57,36 @@ while(st2.size()!=0)
   int y=st2.peek();
   st3.push(x);
   st2.pop();
+} //O(n)
+
+//INSERT AT THE BOTTOM:
+//using one more stack
+//suppose the ele to be added in the new stack is x
+Stack<Integer> stt= new Stack<>();
+while(st.size()>0)
+{
+  stt.push(st.pop());
+}
+st.push(x);
+while(stt.size()!=0)
+{
+  st.push(stt.pop());
 }
 
-
+//INSERTION AT AN INDEX:
+int idx=2;
+int x=7;
+Stack<Integer> rt=new Stack<>();
+while(st.size()>idx)
+{
+ rt.push(st.pop());
+}
+st.push(x);
+while(rt.size()>0)
+{
+ st.push(rt.pop());
+}
+SOP(st);
 
 
 
