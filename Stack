@@ -89,7 +89,30 @@ while(rt.size()>0)
 SOP(st);
 
 
+DISPLAY STACK:
+SOP(st); //builtin func
+//make a new stack
+Stack<Integer> rt= new Stack<>();
+while(st.size()>0)
+{
+rt.push(st.pop());
+}
+while(rt.size()!=0)
+{
+  int x=rt.pop();
+  SOP(x+"");
+  st.push(x); 
+}
 
+//DISPLAY STACK RECURSIVELY:
+public static void displayRecur(Stack<Integer> st)
+{
+  if(st.size()==0) return;
+  int top=st.pop();
+  SOP(top);
+  displayRecur(st);
+  st.push(top);
+}
 
 
 
