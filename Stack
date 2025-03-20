@@ -178,7 +178,7 @@ st.display();
 --------------------------
 LINKED LIST IMPLEMENTAION
 --------------------------
-public class LL_Impl
+public class LL_Imp
 {
 public static Node{
 int val;
