@@ -114,7 +114,153 @@ public static void displayRecur(Stack<Integer> st)
   st.push(top);
 }
 
- 
+--------------------------------
+STACK IMPLEMENTAION USING ARRAY
+--------------------------------
+
+public class implementation
+{
+public static class Stack_Array{
+int[]arr=new int[5];
+private int idx=0;
+void push(int x)
+{
+  arr[idx]=x;
+  idx++;
+}
+int peek(){
+if (idx==0) 
+{
+System.out.print("Stack is empty");
+return -1;
+}
+return arr[idx-1];
+}
+int pop()
+ int top=arr[idx-1];
+arr[idx-1]=0;
+idx--;
+return top;
+
+}
+void display()
+{
+for(int i=0;i<=idx-1;i++)
+{
+SOP(arr[i]);
+}
+}
+int size()
+{
+return idx;
+}
+boolean isEmpty()
+{
+if(idx==0) return true;
+else return false;
+}
+boolean isFull()
+{
+if(idx==arr.length) return true;
+else return false;
+}
+}
+public static void main(String[]args)
+{
+Stack_Array st= new Stack_Array();
+st.push(10);
+st.push(20);
+st.size();
+st.pop();
+st.display();  
+}
+
+--------------------------
+LINKED LIST IMPLEMENTAION
+--------------------------
+public class LL_Impl
+{
+public static Node{
+int val;
+Node next;
+Node(int val)
+{this.val=val;}
+}
+public static class LLStack
+{
+Node head=null;
+int size=0;
+void push(int val)
+{
+Node temp=new Node(x);
+temp.next=head;
+head=temp;
+size++;
+}
+void display_Rev()
+{
+Node temp=head;
+while(temp!=null)
+{SOP(temp.val);
+temp=temp.next;}
+}
+void displayrecur(Node h)
+{
+if(h==null) return;
+  displayrecur(h.next);
+  SOP(h.val);
+}
+void display()
+{
+  displayrecur(head);
+}
+
+int size()
+{return size;}
+int pop()
+{
+if(head==null) 
+{
+SOP("Stack is empty")'
+return -1;
+
+}
+int x=head.val;
+head=head.next;
+return x;
+}
+
+int peek()
+{
+if(head==null)
+{
+SOP("Stack is empty");
+return -1;
+}
+return head.val;
+}
+
+boolean isEMpty()
+{
+if(size()==0) return true;
+else false;
+} 
+
+}
+psvmsa
+{
+LLStack st= new LLStack();
+st.push(10);
+st,display();
+}
+}
+
+
+
+
+
+
+
 
 
 
