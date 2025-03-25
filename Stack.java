@@ -47,12 +47,66 @@ public int[]remove(int arr[])
     
     }
 
+//Next greater element
+public class nextGreater
+    {
+        psvmsa
+        {
+            int[]arr={1,2,4,6,9,8,10};
+            int[]res=int[arr.length];
+            for(int i=0;i<arr.length;i++)
+                {
+                    res[i]=-1;
+                    for(int j=0;j<arr.length;j++)
+                        {
+                            if(arr[j]>arr[i])
+                            {
+                                res[i]=arr[j];
+                                break; //breaks the inner loop
+                            }
+                        }
+                }
+            for(int i=0;i<arr.length;i++)
+            {
+                SOP(arr[i]+"");
+            }
+        }
+    }
 
+//M:2
+res[n-1]=-1;
+for(int i=n-2;i>=0;i++)
+    {
+        while(st.peek()<arr[i] && st.size()>0)
+            {
+                st.pop(); //jab tak chota ele meh stack meh nikaldo
+            }
+        if(st.size()==0) res[i]=-1;
+        else res[i]=st.peek();
+        st.push(arr[i]);  
+    }
 
+//stock span: prev greater element:
+res[0]=-1;
+for(int i=0;i<arr.length;i++)
+    {
+        while(st.peek()<arr[i]&& !st.isEmpty())
+        {
+            st.pop();
+        }
+        if(st.isEmpty())
+        {
+            res[i]=i+1;
+        }
+        else
+        {
+            res[i]=i=st.peek();
+        }
+        st.push(i);
+        
+    }
 
-
-
-
+//next greater element :approach 3
 
 
 
@@ -60,5 +114,7 @@ public int[]remove(int arr[])
 
 //Questions Solved:
 //Leetcode 20
+//next greater element
+//stock span problem
 
 
