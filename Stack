@@ -255,11 +255,75 @@ st,display();
 }
 }
 
+-----------------
+INFIX EVALUTAION
+-----------------
+import java.util.*;
 
+public class InfixEvaluation {
+    public static void main(String[] args) {
+        String str = "9-5*(2*4)";
+        System.out.println("Result: " + evaluateInfix(str));
+    }
 
+    public static int evaluateInfix(String str) {
+        Stack<Integer> val = new Stack<>();
+        Stack<Character> op = new Stack<>();
 
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
 
+            if (Character.isDigit(ch)) {
+                val.push(ch - '0');
+            } else if (ch == '(') {
+                op.push(ch);
+            } else if (ch == ')') {
+                while (op.peek() != '(') {
+                    performOperation(val, op);
+                }
+                op.pop(); // Remove '('
+            } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+                while (!op.isEmpty() && precedence(op.peek()) >= precedence(ch)) {
+                    performOperation(val, op);
+                }
+                op.push(ch);
+            }
+        }
 
+        while (!op.isEmpty()) {
+            performOperation(val, op);
+        }
+
+        return val.pop();
+    }
+
+    public static void performOperation(Stack<Integer> val, Stack<Character> op) {
+        int v2 = val.pop();
+        int v1 = val.pop();
+        char operator = op.pop();
+
+        switch (operator) {
+            case '+':
+                val.push(v1 + v2);
+                break;
+            case '-':
+                val.push(v1 - v2);
+                break;
+            case '*':
+                val.push(v1 * v2);
+                break;
+            case '/':
+                val.push(v1 / v2);
+                break;
+        }
+    }
+
+    public static int precedence(char ch) {
+        if (ch == '+' || ch == '-') return 1;
+        if (ch == '*' || ch == '/') return 2;
+        return 0;
+    }
+} 
 
 
 
