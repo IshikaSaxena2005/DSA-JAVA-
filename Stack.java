@@ -106,7 +106,34 @@ for(int i=0;i<arr.length;i++)
         
     }
 
-//next greater element :approach 3
+//Leetcode 496
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        Stack<Integer> st= new Stack<>();
+        int n=nums2.length;
+        int n1=nums1.length;
+        int[]res=new int[n];
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.isEmpty()&&nums2[i]>st.peek())
+            {
+                st.pop();
+            }
+            res[i]=st.isEmpty()?-1:st.peek();
+            st.push(nums2[i]);
+        }
+        int[]res2=new int[n1];
+        for(int i=0;i<nums1.length;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                res2[i]=res[j];
+                break;
+            }
+        }
+        return res2;
+    }
+}
 
 
 
