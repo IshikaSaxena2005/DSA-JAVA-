@@ -325,8 +325,74 @@ public class InfixEvaluation {
     }
 } 
 
+----------------
+INFIX TO PREFIX
+----------------
 
+import java.util.*;
 
+public class InfixToPrefix {
+
+    public static int precedence(char ch) {
+        switch (ch) {
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+            case '^':
+                return 3;
+            default:
+                return -1;
+        }
+    }
+
+    public static String infixToPrefix(String infix) {
+        Stack<Character> op = new Stack<>();
+        Stack<String> val = new Stack<>();
+
+        for (int i = infix.length() - 1; i >= 0; i--) {
+            char ch = infix.charAt(i);
+
+            if (Character.isDigit(ch)) {
+                val.push(Character.toString(ch));
+            } else if (ch == ')') {
+                op.push(ch);
+            } else if (ch == '(') {
+                while (!op.isEmpty() && op.peek() != ')') {
+                    String v1 = val.pop();
+                    String v2 = val.pop();
+                    char o = op.pop();
+                    val.push(o + v1 + v2);
+                }
+                op.pop();
+            } else {
+                while (!op.isEmpty() && precedence(op.peek()) >= precedence(ch)) {
+                    String v1 = val.pop();
+                    String v2 = val.pop();
+                    char o = op.pop();
+                    val.push(o + v1 + v2);
+                }
+                op.push(ch);
+            }
+        }
+
+        while (!op.isEmpty()) {
+            String v1 = val.pop();
+            String v2 = val.pop();
+            char o = op.pop();
+            val.push(o + v1 + v2);
+        }
+
+        return val.pop();
+    }
+
+    public static void main(String[] args) {
+        String infix = "9-(5+3)*4/6";
+        System.out.println("Prefix Expression: " + infixToPrefix(infix));
+    }
+} 
 
 
 
