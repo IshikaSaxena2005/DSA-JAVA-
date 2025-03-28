@@ -156,7 +156,26 @@ class Solution {
     }
 }
 
+//next smaller element:
+public class Solution {
+    public int[] prevSmaller(int[] A) {
+        Stack<Integer> st= new Stack<>();
+        int n=A.length;
+        int[]res=new int[n];
 
+        for(int i=0;i<n;i++)
+        {
+            while(!st.isEmpty()&&st.peek()>=A[i])
+            {
+                st.pop();
+            }
+ 
+            res[i]=st.isEmpty()?-1:st.peek();
+            st.push(A[i]);
+        }
+        return res;
+    }
+}
 
 
 //Questions Solved:
