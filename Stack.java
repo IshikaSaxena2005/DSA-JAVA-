@@ -135,6 +135,26 @@ class Solution {
     }
 }
 
+//Leetcode 503:
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        Stack<Integer> st= new Stack<>();
+        int n=nums.length;
+        int[]res=new int[n];
+        for(int i=2*n-1;i>=0;i--)
+        {
+            int cirIdx=i%n;
+           while(!st.isEmpty()&& st.peek()<=nums[cirIdx])
+           {
+            st.pop();
+           }
+           res[cirIdx]=st.isEmpty()?-1:st.peek();
+           st.push(nums[cirIdx]);
+        }
+        return res;
+
+    }
+}
 
 
 
@@ -143,5 +163,7 @@ class Solution {
 //Leetcode 20
 //next greater element
 //stock span problem
+//Leetcode 496
+//Leetcode 503
 
 
