@@ -222,6 +222,41 @@ class Solution {
     }
 }
 
+//Leetcode 239:
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n=nums.length;
+        int[]ans=new int[n-k+1];
+        Stack<Integer> st=new Stack<>();
+        int[]nge=new int[n];
+        nge[n-1]=n; //to avoid index out of bound error
+        int z=0;
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.isEmpty()&& nums[i]>=nums[st.peek()])
+            {
+                st.pop();
+                
+            }
+            nge[i]=st.isEmpty()?n:st.peek();
+            st.push(i);//index ko push krna
+        }
+        int j=0;
+        for(int i=0;i<=n-k;i++)
+        {
+            if(j<i) j=i; //if j goes out of window
+
+            while(nge[j]<i+k)//window  ke andr hii rehna hai
+            {
+               j=nge[j];
+            }
+            ans[z++]=nums[j];
+        }
+        return ans;
+    }
+}
+
+
 //Questions Solved:
 //Leetcode 20
 //next greater element
@@ -229,5 +264,6 @@ class Solution {
 //Leetcode 496
 //Leetcode 503
 //celebrity problem
+//Leetcode 239
 
 
