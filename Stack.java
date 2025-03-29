@@ -177,6 +177,50 @@ public class Solution {
     }
 }
 
+//the celebrity problem:
+import java.util.Stack;
+
+class Solution {
+    public int celebrity(int mat[][]) {
+        int n = mat.length;
+        Stack<Integer> st = new Stack<>();
+        
+        // Push all people onto the stack
+        for (int i = 0; i < n; i++) {
+            st.push(i);
+        }
+        
+        // Determine the potential celebrity
+        while (st.size() > 1) {
+            int person1 = st.pop();
+            int person2 = st.pop();
+            
+            // Check if person1 knows person2
+            if (mat[person1][person2] == 1) {
+                st.push(person2); // Person1 can't be a celebrity
+            } else {
+                st.push(person1); // Person2 can't be a celebrity
+            }
+        }
+        
+        // Check if a celebrity exists
+        if (st.isEmpty()) {
+            return -1;
+        }
+        int candidate = st.pop();
+        
+        // Validate if the candidate is a celebrity
+        for (int i = 0; i < n; i++) {
+            if (i != candidate) {
+                if (mat[candidate][i] == 1 || mat[i][candidate] == 0) {
+                    return -1; // Candidate is invalid
+                }
+            }
+        }
+        
+        return candidate;
+    }
+}
 
 //Questions Solved:
 //Leetcode 20
@@ -184,5 +228,6 @@ public class Solution {
 //stock span problem
 //Leetcode 496
 //Leetcode 503
+//celebrity problem
 
 
