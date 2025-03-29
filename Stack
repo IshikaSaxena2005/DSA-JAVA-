@@ -326,75 +326,245 @@ public class InfixEvaluation {
 } 
 
 ----------------
-INFIX TO PREFIX
+INFIX TO POSTFIX
 ----------------
+import java.util.Stack;
 
-import java.util.*;
+public class InfixToPostfix {
 
-public class InfixToPrefix {
-
-    public static int precedence(char ch) {
+    static int precedence(char ch) {
         switch (ch) {
             case '+':
-            case '-':
-                return 1;
+            case '-': return 1;
             case '*':
-            case '/':
-                return 2;
-            case '^':
-                return 3;
-            default:
-                return -1;
+            case '/': return 2;
+            case '^': return 3;
         }
+        return -1;
     }
 
-    public static String infixToPrefix(String infix) {
-        Stack<Character> op = new Stack<>();
-        Stack<String> val = new Stack<>();
+    static String infixToPostfix(String expression) {
+        StringBuilder result = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
 
-        for (int i = infix.length() - 1; i >= 0; i--) {
-            char ch = infix.charAt(i);
-
-            if (Character.isDigit(ch)) {
-                val.push(Character.toString(ch));
-            } else if (ch == ')') {
-                op.push(ch);
+        for (char ch : expression.toCharArray()) {
+            if (Character.isLetterOrDigit(ch)) {
+                result.append(ch); // Operand
             } else if (ch == '(') {
-                while (!op.isEmpty() && op.peek() != ')') {
-                    String v1 = val.pop();
-                    String v2 = val.pop();
-                    char o = op.pop();
-                    val.push(o + v1 + v2);
+                stack.push(ch); // Left parenthesis
+            } else if (ch == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    result.append(stack.pop());
                 }
-                op.pop();
+                stack.pop(); // Remove '('
             } else {
-                while (!op.isEmpty() && precedence(op.peek()) >= precedence(ch)) {
-                    String v1 = val.pop();
-                    String v2 = val.pop();
-                    char o = op.pop();
-                    val.push(o + v1 + v2);
+                while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(ch)) {
+                    result.append(stack.pop());
                 }
-                op.push(ch);
+                stack.push(ch); // Operator
             }
         }
-
-        while (!op.isEmpty()) {
-            String v1 = val.pop();
-            String v2 = val.pop();
-            char o = op.pop();
-            val.push(o + v1 + v2);
+        while (!stack.isEmpty()) {
+            result.append(stack.pop());
         }
-
-        return val.pop();
+        return result.toString();
     }
 
     public static void main(String[] args) {
-        String infix = "9-(5+3)*4/6";
-        System.out.println("Prefix Expression: " + infixToPrefix(infix));
+        String expr = "A+B*(C^D-E)";
+        System.out.println("Postfix: " + infixToPostfix(expr));
     }
-} 
+}
+
+----------------
+PREFIX TO INFIX
+----------------
+import java.util.Stack;
+
+public class PrefixToInfix {
+
+    static String prefixToInfix(String expression) {
+        Stack<String> stack = new Stack<>();
+
+        for (int i = expression.length() - 1; i >= 0; i--) {
+            char ch = expression.charAt(i);
+
+            if (Character.isLetterOrDigit(ch)) {
+                stack.push(String.valueOf(ch)); // Operand
+            } else {
+                String op1 = stack.pop();
+                String op2 = stack.pop();
+                stack.push("(" + op1 + ch + op2 + ")");
+            }
+        }
+        return stack.peek();
+    }
+
+    public static void main(String[] args) {
+        String expr = "*+AB-CD";
+        System.out.println("Infix: " + prefixToInfix(expr));
+    }
+}
+
+------------------
+PREFIX TO POSTFIX
+------------------
+import java.util.Stack;
+
+public class PrefixToPostfix {
+
+    static String prefixToPostfix(String expression) {
+        Stack<String> stack = new Stack<>();
+
+        for (int i = expression.length() - 1; i >= 0; i--) {
+            char ch = expression.charAt(i);
+
+            if (Character.isLetterOrDigit(ch)) {
+                stack.push(String.valueOf(ch)); // Operand
+            } else {
+                String op1 = stack.pop();
+                String op2 = stack.pop();
+                stack.push(op1 + op2 + ch);
+            }
+        }
+        return stack.peek();
+    }
+
+    public static void main(String[] args) {
+        String expr = "*+AB-CD";
+        System.out.println("Postfix: " + prefixToPostfix(expr));
+    }
+}
+
+-----------------
+POSTFIX TO PREFIX
+-----------------
+import java.util.Stack;
+
+public class PostfixToPrefix {
+
+    static String postfixToPrefix(String expression) {
+        Stack<String> stack = new Stack<>();
+
+        for (char ch : expression.toCharArray()) {
+            if (Character.isLetterOrDigit(ch)) {
+                stack.push(String.valueOf(ch)); // Operand
+            } else {
+                String op2 = stack.pop();
+                String op1 = stack.pop();
+                stack.push(ch + op1 + op2);
+            }
+        }
+        return stack.peek();
+    }
+
+    public static void main(String[] args) {
+        String expr = "AB+CD-*";
+        System.out.println("Prefix: " + postfixToPrefix(expr));
+    }
+}
+
+-----------------
+POSTFIX TO INFIX
+-----------------
+import java.util.Stack;
+
+public class PostfixToInfix {
+
+    static String postfixToInfix(String expression) {
+        Stack<String> stack = new Stack<>();
+
+        for (char ch : expression.toCharArray()) {
+            if (Character.isLetterOrDigit(ch)) {
+                stack.push(String.valueOf(ch)); // Operand
+            } else {
+                String op2 = stack.pop();
+                String op1 = stack.pop();
+                stack.push("(" + op1 + ch + op2 + ")");
+            }
+        }
+        return stack.peek();
+    }
+
+    public static void main(String[] args) {
+        String expr = "AB+CD-*";
+        System.out.println("Infix: " + postfixToInfix(expr));
+    }
+}
 
 
+
+
+---------------
+INFIX TO PREFIX
+---------------
+import java.util.Stack;
+
+public class InfixToPrefix {
+
+    static int precedence(char ch) {
+        switch (ch) {
+            case '+':
+            case '-': return 1;
+            case '*':
+            case '/': return 2;
+            case '^': return 3;
+        }
+        return -1;
+    }
+
+    static String reverseExpression(String expression) {
+        StringBuilder reversed = new StringBuilder();
+        for (char ch : expression.toCharArray()) {
+            if (ch == '(') {
+                reversed.append(')');
+            } else if (ch == ')') {
+                reversed.append('(');
+            } else {
+                reversed.append(ch);
+            }
+        }
+        return reversed.reverse().toString();
+    }
+
+    static String infixToPostfix(String expression) {
+        Stack<Character> stack = new Stack<>();
+        StringBuilder result = new StringBuilder();
+
+        for (char ch : expression.toCharArray()) {
+            if (Character.isLetterOrDigit(ch)) {
+                result.append(ch); // Operand
+            } else if (ch == '(') {
+                stack.push(ch);
+            } else if (ch == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    result.append(stack.pop());
+                }
+                stack.pop(); // Remove '('
+            } else {
+                while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(ch)) {
+                    result.append(stack.pop());
+                }
+                stack.push(ch);
+            }
+        }
+        while (!stack.isEmpty()) {
+            result.append(stack.pop());
+        }
+        return result.toString();
+    }
+
+    static String infixToPrefix(String expression) {
+        String reversedExpr = reverseExpression(expression);
+        String postfixExpr = infixToPostfix(reversedExpr);
+        return new StringBuilder(postfixExpr).reverse().toString();
+    }
+
+    public static void main(String[] args) {
+        String expr = "(A+B)*(C-D)";
+        System.out.println("Prefix: " + infixToPrefix(expr));
+    }
+}
 
 
 
