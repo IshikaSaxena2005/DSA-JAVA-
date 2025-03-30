@@ -1,1 +1,22 @@
+//print all elements present in given queue without using builtin SOP(q)
+class Display
+{
+psvmsa
+{
+Queue<Integer> q= new LinkedList<>();
+q.add(1);
+q.add(2);
+q.add(3);
+Queue<Integer> q= new LinkedList<>();
+while(q.size()>0)
+{
+SOP(q.peek()+"" );
+helper.add(q.poll());
+}
+while(helper.size()>0)
+{
+q.add(helper.poll());
+}
+}
+}
 
