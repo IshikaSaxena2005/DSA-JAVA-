@@ -256,6 +256,48 @@ class Solution {
     }
 }
 
+//Leetcode 907
+class Solution {
+    public int sumSubarrayMins(int[] arr) {
+
+        int n=arr.length;
+        int[]PLE=new int[n];
+        int MOD = 1_000_000_007;
+        Stack<Integer> st= new Stack<>();
+
+        for(int i=0;i<n;i++)
+        {
+            while(!st.isEmpty() &&arr[i]<=arr[st.peek()])
+            {
+                st.pop();
+            }
+             PLE[i]=st.isEmpty()?-1: st.peek();
+            st.push(i);
+           
+        }
+        st.clear();
+
+        int[]NLE=new int[n];
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.isEmpty()&& arr[i]<arr[st.peek()])
+            {
+                st.pop();
+            }
+            NLE[i]=st.isEmpty()?n:st.peek();
+            st.push(i);
+    
+        }
+        long sum=0;
+        for(int i=0;i<n;i++)
+        {
+            long left=i-PLE[i];
+            long right=NLE[i]-i;
+            sum=(sum+ arr[i]*left*right)%MOD;
+        }
+        return (int)sum;
+    }
+}
 
 //Questions Solved:
 //Leetcode 20
@@ -265,5 +307,6 @@ class Solution {
 //Leetcode 503
 //celebrity problem
 //Leetcode 239
+//Leetcode 907
 
 
