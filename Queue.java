@@ -168,11 +168,76 @@ public long[]printFirstK(long A[],int N,int k)
   return resl
 }
 
+//Reorder Queue
+Stack<Integer> st= new Stack<>();
+for(int i=1;i<q.size()/2;i++)
+  {
+    st.push(q.remove());  //5 6 7 8
+  }
+while(St.size()>0)
+  {
+    q.add(st.pop());  //5 6 7 8 4 3 2 1
+  }
+for(int i=1;i<=q.size()/2;i++)
+  {
+    q.add(st.pop());
+    q.add(q.remove());
 
+  }
+while(q.size()>0)
+  {
+    st.push(q.remove());
+  }
+while(st.size()>0)
+  {
+    q.add(st.pop());
+  }
+SOP(q);
 
+//Leetcode 735
+class Solution {
+    public int[] asteroidCollision(int[] arr) {
+        int n=arr.length;
+     
+        Stack<Integer>st= new Stack<>();
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]>0)
+            {
+                st.push(arr[i]);
+            }
+            //else handle collision
+            else
+            {
+                //jab tak chota ele aa rha nikal do
+                while(!st.isEmpty()&& st.peek()>0 && Math.abs(arr[i])>Math.abs(st.peek()))
+                {
+                    st.pop();
+                }
+                if(st.isEmpty()||st.peek()<0)
+                {
+                    st.push(arr[i]);
+                }
+                else if(Math.abs(st.peek())==Math.abs(arr[i]))
+                {
+                    st.pop();
+                }
+        
 
-
-
+            }
+          
+        }
+       int[]res=new int[st.size()];
+       for(int i=res.length-1;i>=0;i--)
+       {
+        res[i]=st.pop();
+       }
+    return res;
+    }
+}
 
 //Leetcode 225
 //Leetcode 232
+//First negative in each window size k
+//Reorder Queue
+//Leetcode 735
