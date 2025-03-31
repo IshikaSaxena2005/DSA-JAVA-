@@ -146,7 +146,27 @@ class MyQueue {
  * boolean param_4 = obj.empty();
  */
 
-
+//First negative in each window size k:
+public long[]printFirstK(long A[],int N,int k)
+  {
+    long[res= new long[N-k+1];
+    Queue<Integer> q = new LinkedList<>();
+  for(int i=0;i<N-k+1;i++)
+    {
+      if(q.size()>0 && q.peek()<i) q.remove();
+      if(q.size()>0 && q.peek()<=i+k-1)
+      {
+        res[i]=A[q.peek()];
+  
+      }
+      else if(q.size()==0)
+      {
+        res[i]=0;
+      }
+      else  res[i]=0;
+    }
+  return resl
+}
 
 
 
