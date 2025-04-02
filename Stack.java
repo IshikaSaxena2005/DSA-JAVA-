@@ -374,6 +374,45 @@ class Solution {
 
     }
 }
+//Leetcode 84:
+class Solution {
+    public int largestRectangleArea(int[] arr) { //arr==heights
+        //NLE and PLE to calculate
+        Stack<Integer> st= new Stack<>();
+        int n=arr.length;
+        //PLE:
+        int PLE[]= new int[n];
+        for(int i=0;i<n;i++)
+        {
+            while(!st.isEmpty() && arr[i]<arr[st.peek()])
+            {
+                st.pop();
+            }
+            PLE[i]=st.isEmpty()?-1: st.peek();
+            st.push(i);
+        }
+        int NLE[]=new int[n];
+        st.clear();
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.isEmpty() && arr[i]<=arr[st.peek()])
+            {
+                st.pop();
+            }
+            NLE[i]=st.isEmpty()?n:st.peek();
+            st.push(i);
+        }
+        int maxArea=0;
+        int max=0;
+        for(int i=0;i<n;i++)
+        {
+            maxArea=arr[i]*(NLE[i]-PLE[i]-1);
+            max=Math.max(max,maxArea);
+        }
+        return max;
+    }
+}
+
 
 //Questions Solved:
 //Leetcode 20
@@ -385,5 +424,6 @@ class Solution {
 //Leetcode 239
 //Leetcode 907
 //Leetcode 2104
+//Leetcode 84
 
 
