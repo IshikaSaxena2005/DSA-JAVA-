@@ -298,6 +298,82 @@ class Solution {
         return (int)sum;
     }
 }
+//Leetcode 2104
+class Solution {
+    public long subArrayRanges(int[] arr) {
+        //calculate NGE and PGE for maximum contribution
+        Stack<Integer> st= new Stack<>();
+        int n=arr.length;
+        //PGE
+        int[]PGE= new int[n];
+        for(int i=0;i<n;i++)
+        {
+            while(!st.isEmpty()&& arr[i]>arr[st.peek()])
+            {
+                st.pop();
+            }
+            PGE[i]=st.isEmpty()?-1:st.peek();
+            st.push(i);
+        }
+        //NGE
+        int[]NGE=new int[n];
+        st.clear();
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.isEmpty()&&arr[i]>=arr[st.peek()])
+            {
+                st.pop();
+            }
+            NGE[i]=st.isEmpty()?n:st.peek();
+            st.push(i);
+        }
+    
+        long maxContri=0;
+        for(int i=0;i<n;i++)
+        {
+            long left=i-PGE[i];
+            long right=NGE[i]-i;
+            maxContri+=(long)arr[i]*left*right;
+        }
+
+        //for min contribution:
+        int[]PLE=new int[n];
+            st.clear();
+        for(int i=0;i<n;i++)
+        {
+            while(!st.isEmpty()&& arr[i]<arr[st.peek()])
+            {
+                st.pop();
+            }
+            PLE[i]=st.isEmpty()?-1:st.peek();
+            st.push(i);
+        }
+
+
+        //NLE:
+        int[]NLE=new int[n];
+                st.clear();
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.isEmpty()&& arr[i]<=arr[st.peek()])
+            {
+                st.pop();
+            }
+            NLE[i]=st.isEmpty()?n:st.peek();
+            st.push(i);
+        }
+        long minContri=0;
+        for(int i=0;i<n;i++)
+        {
+            long left=i-PLE[i];
+            long right=NLE[i]-i;
+            minContri+=(long)arr[i]*left*right;
+        }
+        return maxContri-minContri;
+        
+
+    }
+}
 
 //Questions Solved:
 //Leetcode 20
@@ -308,5 +384,6 @@ class Solution {
 //celebrity problem
 //Leetcode 239
 //Leetcode 907
+//Leetcode 2104
 
 
