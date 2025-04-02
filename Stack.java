@@ -413,6 +413,60 @@ class Solution {
     }
 }
 
+//Leetcode 85
+class Solution {
+    public int largestRect(int []arr)
+    {
+        int n=arr.length;
+        Stack<Integer>st= new Stack<>();
+        int[]PLE = new int[n];
+        for(int i=0;i<n;i++)
+        {
+            while(!st.isEmpty()&& arr[i]<arr[st.peek()])
+            {
+                st.pop();
+
+            }
+            PLE[i]=st.isEmpty()?-1:st.peek();
+            st.push(i);
+        }
+        int[]NLE=new int[n];
+        st.clear();
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.isEmpty() && arr[i]<=arr[st.peek()])
+            {
+                st.pop();
+            }
+            NLE[i]=st.isEmpty()?n:st.peek();
+            st.push(i);
+        }
+         int maxArea=0;
+        int max=0;
+        for(int i=0;i<n;i++)
+        {
+            maxArea=arr[i]*(NLE[i]-PLE[i]-1);
+            max=Math.max(max,maxArea);
+        }
+        return max;
+    }
+    public int maximalRectangle(char[][] matrix) {
+        int row=matrix.length;
+        int col=matrix[0].length;
+        int[]height=new int[col]; //histogram height
+        int maxArea=0;
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                height[j]=matrix[i][j]=='1'?height[j]+1:0;
+            }
+            maxArea=Math.max(maxArea,largestRect(height));
+        }
+        return maxArea;
+    }
+}
+
 
 //Questions Solved:
 //Leetcode 20
@@ -425,5 +479,6 @@ class Solution {
 //Leetcode 907
 //Leetcode 2104
 //Leetcode 84
+//Leetcde 85
 
 
