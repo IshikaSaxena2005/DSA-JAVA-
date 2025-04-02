@@ -400,3 +400,35 @@ class Solution {
         return root;
     }
 }
+
+//Leetcode 101
+
+class Solution {
+    public void invert(TreeNode root)
+    {
+        if(root==null) return;
+        TreeNode temp=root.left;
+        root.left=root.right;
+        root.right=temp;
+        invert(root.left);
+        invert(root.right);
+    }
+    public boolean same(TreeNode p,TreeNode q)
+    {
+        if(p==null && q==null) return true;
+        if(p==null &&q!=null) return false;
+        if(p!=null && q==null) return false;
+        if(p.val!=q.val) return false;
+        if(same(p.left,q.left)==false) return false;
+        if(same(p.right,q.right)==false) return false;
+        return true;
+
+    }
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null) return true;
+      
+        invert(root.right);
+   
+        return same(root.left,root.right);
+    }
+}
