@@ -180,7 +180,7 @@ return dp[n]= pair(n-1) + (n-1)* pair(n-2); //combination
 }
 
 //Tabulation:
-public int PAirFreind(int n)
+public int PairFreind(int n)
 {
 int dp[]=new int[n+1];
 dp[1]=1;
@@ -199,7 +199,7 @@ public int dearrange(int n)
 {
   if(n==0) return 0;
   if(n==1) return 1;
-    return (n-1) * (dearrange(n-1)+ dearrange(n-2);
+    return (n-1) * (dearrange(n-1)+ dearrange(n-2));
 }
 
 //using dp:
