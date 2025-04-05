@@ -241,6 +241,43 @@ class Solution {
     }
 };
 
+//subset Sum -GFG
+class Solution {
+    public static Boolean subsetSum(int i,int[]arr,int target,int[][]dp)
+    {
+        if(target<0) return false;
+        //dpp[i][target]
+        if(i==arr.length)
+        {
+            if(target==0) return true;
+            else return false;
+        }
+        if(dp[i][target]!=-1) return dp[i][target]==1;
+        Boolean skip= subsetSum(i+1,arr,target,dp);
+        Boolean ans=false;
+        Boolean pick=subsetSum(i+1,arr,target-arr[i],dp);
+        ans = pick||skip;
+        
+        dp[i][target]=(ans)?1:0;
+        return ans;
+    }
+    static Boolean isSubsetSum(int arr[], int sum) {
+        // code here
+        int[][]dp= new int[arr.length][sum+1];
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=0;j<dp[0].length;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+        return  subsetSum(0,arr,sum,dp);
+        
+        
+    }
+}
+
+
 
 //Leetcode 62
 // class Solution {
