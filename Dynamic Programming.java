@@ -1206,21 +1206,34 @@ class Solution {
         return minimum(triangle,0,0,dp);
         
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //
+}
+//Leetcode 931
+//TLE Erro:
+class Solution {
+    private int minimum(int[][]matrix,int row,int col,int[][]dp)
+    {
+        if(row==matrix.length) return 0;
+        if(col>=matrix.length||col<0) return Integer.MAX_VALUE;
+        if(dp[row][col]!=-1) return dp[row][col];
+        int down=minimum(matrix,row+1,col,dp);
+        int diagonalL=minimum(matrix,row+1,col-1,dp);
+        int diagonalR=minimum(matrix,row+1,col+1,dp);
+        int sum=0;
+        sum=matrix[row][col]+Math.min(down,Math.min(diagonalL,diagonalR));
+        return dp[row][col]=sum;
+    }
+    public int minFallingPathSum(int[][] matrix) {
+        int row=matrix.length;
+        int col=matrix.length;
+        int[][]dp=new int[row][col];
+        int minPath=Integer.MAX_VALUE;
+        for(int j=0;j<col;j++)
+        {
+           minPath=Math.min(minPath,minimum(matrix,0,j,dp));
+        }
+        return minPath;
+        // return minimum(matrix,0,0,dp);  wring becaxz the falling path can start form any col
+    }
 }
 
 
@@ -1259,4 +1272,5 @@ Leetcode 1092
 Leetcode 647
 Leetcode 543
 Leetcode 124
+Leetcode 931
          
