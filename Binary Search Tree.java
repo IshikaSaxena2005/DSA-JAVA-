@@ -1,3 +1,16 @@
+//GFG minValue:
+class Solution {
+    // Function to find the minimum element in the given BST.
+    int minValue(Node root) {
+        // code here
+        if(root==null ) return Integer.MAX_VALUE;
+        int a=root.data;
+        int b=minValue(root.left);
+        int c=minValue(root.right);
+        return Math.min(a,Math.min(b,c));
+    }
+}
+
 //Leetcode 700
 class Solution {
 public TreeNode searchBST(TreeNode root, int val) {
