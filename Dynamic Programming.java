@@ -1225,4 +1225,38 @@ class Solution {
 
 
 //Solved ques :
-            
+Questions Solved:
+Leetcode 509
+Leetcode 746
+Leetcode 1137
+friends pairing
+count dearrangements
+Leetcode 120
+LCS
+Leetcode 516
+Leetcode 583
+Geek training
+Leetcode 96
+Leetcode 198
+Leetcode 70
+Leetcode 62
+Leetcode 64
+Leetcode 1277
+Leetcode 63
+Leetcode 279
+Leetcode 213
+Leetcode 416
+Leetcode 2915
+Leetcode 494
+Leetcode 2786
+Leetcode 322
+Leetcode 516
+Leetcode 1312
+Leetocode 583
+Leetcode 72
+Leetcode 96
+Leetcode 1092
+Leetcode 647
+Leetcode 543
+Leetcode 124
+         
