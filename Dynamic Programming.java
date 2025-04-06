@@ -1184,3 +1184,45 @@ class Solution {
         return maxProfit(arr,0,3,dp);
     }
 }
+
+//Leetcode 120
+class Solution {
+    private int minimum(List<List<Integer>> triangle,int row,int col,int dp[][])
+    {
+        if(row==triangle.size()-1) return triangle.get(row).get(col);
+        if(dp[row][col]!=-1) return dp[row][col];
+        int down=minimum(triangle,row+1,col,dp);
+        int diagonal=minimum(triangle,row+1,col+1,dp);
+        int sum=0;
+        sum=Math.min(diagonal,down)+triangle.get(row).get(col);
+        return dp[row][col]=sum;
+    }
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int[][]dp= new int[triangle.size()][triangle.size()];
+        for(int i=0;i<triangle.size();i++)
+        {
+            Arrays.fill(dp[i],-1);
+        }
+        return minimum(triangle,0,0,dp);
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //
+}
+
+
+//Solved ques :
+            
