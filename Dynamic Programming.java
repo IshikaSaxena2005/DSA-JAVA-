@@ -1154,3 +1154,33 @@ class Solution {
         return maxSum;
     }
 }
+
+//GeekTraining
+
+class Solution {
+    //dp[day][last]
+    private int maxProfit(int arr[][],int day,int last,int [][]dp)
+    {
+        if(day==arr.length) return 0;
+        if(dp[day][last]!=-1) return dp[day][last];
+        int max=0;
+        for(int i=0;i<3;i++)
+        {
+            if(i!=last)
+            {
+                max=Math.max(max,dp[day][i]+maxProfit(arr,day+1,i,dp));
+            }
+        }
+        return dp[day][last]=max;
+    }
+    public int maximumPoints(int arr[][]) {
+        // code here
+        int n=arr.length;
+        int[][]dp= new int[n][4];
+        for(int i=0;i<n;i++)
+        {
+            Arrays.fill(dp[i],-1);
+        }
+        return maxProfit(arr,0,3,dp);
+    }
+}
