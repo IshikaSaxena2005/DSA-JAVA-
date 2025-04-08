@@ -1404,6 +1404,32 @@ class Solution {
         return coins(0,coins,amount,dp);
     }
 }
+class Solution {
+    private int price(int i,int[]price,int[]dp)
+    {
+        
+        if(i==0) return 0;
+        int maxVal= Integer.MIN_VALUE;
+        if(dp[i]!=-1) return dp[i];
+        for(int j=1;j<=i;j++)
+        {
+            int cutVal=price[j-1]+price(i-j,price,dp);
+            maxVal= Math.max(cutVal,maxVal);
+        }
+        return dp[i]=maxVal;
+    }
+    public int cutRod(int[] price) {
+        // code here
+        
+        int n=price.length;
+        int[]dp= new int[n+1];
+        for(int i=0;i<=n;i++)
+        {
+            dp[i]=-1;
+        }
+        return price(n,price,dp);
+    }
+}
 //Solved ques :
 Questions Solved:
 Leetcode 509
@@ -1444,3 +1470,4 @@ chocolate pickup
 perfect sum
 partition with given difference 
 Leetcode 518
+Rod cut
