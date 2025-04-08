@@ -1307,6 +1307,36 @@ class Solution {
         return dp[i][j1][j2] = max;
     }
 }
+//perfect sum gfg
+
+class Solution {
+    // Function to calculate the number of subsets with a given sum
+    public int perfectSum(int[] nums, int target) {
+        // code here
+        int n=nums.length;
+        int[][]dp= new int[n+1][target+1];
+        //sum agr 0 hai toh 1 hii way hai
+        for(int i=0;i<=n;i++)
+        {
+            dp[i][0]=1;
+        }
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=0;j<=target;j++)
+            {
+                //sjkip
+                dp[i][j]=dp[i-1][j];
+                if(nums[i-1]<=j)
+                {
+                    //pick
+                    dp[i][j]=dp[i][j]+dp[i-1][j-nums[i-1]];
+                }
+            }
+            
+        }
+        return dp[n][target];
+    }
+}
 
 //Solved ques :
 Questions Solved:
@@ -1345,4 +1375,5 @@ Leetcode 543
 Leetcode 124
 Leetcode 931
 chocolate pickup
-         
+perfect sum
+    
