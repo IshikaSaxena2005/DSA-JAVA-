@@ -1338,6 +1338,45 @@ class Solution {
     }
 }
 
+//partition with given difference:
+
+class Solution {
+
+    int countPartitions(int[] arr, int d) {
+        // code here
+        int totalSum=0;
+        for(int ele:arr)
+        {
+            totalSum+=ele;
+        }
+        if((totalSum+d)%2!=0 || totalSum<d) return 0;
+        int target=(totalSum+d)/2;
+    
+        int n=arr.length;
+        int[][]dp= new int[n+1][target+1];
+        for(int i=0;i<=n;i++)
+        {
+            dp[i][0]=1; //becaz ony 1 way if sum is zero
+            
+        }
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=0;j<=target;j++)
+            {
+                if(arr[i-1]<=j)
+                {
+                    //pick
+                    dp[i][j]=dp[i-1][j]+dp[i-1][j-arr[i-1]];
+                }
+                //skip
+                else{dp[i][j]=dp[i-1][j];}
+
+            }
+            
+        }
+        return dp[n][target];
+    }
+}
 //Solved ques :
 Questions Solved:
 Leetcode 509
@@ -1376,4 +1415,4 @@ Leetcode 124
 Leetcode 931
 chocolate pickup
 perfect sum
-    
+partition with given difference 
