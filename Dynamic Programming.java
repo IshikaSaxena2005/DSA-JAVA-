@@ -1377,6 +1377,33 @@ class Solution {
         return dp[n][target];
     }
 }
+
+//LEetcode 518
+class Solution {
+    public int coins(int i,int[]coins,int target,int[][]dp)
+    {
+        if(i==coins.length) 
+        {
+            if(target==0) return 1;
+            else return 0;
+
+        }
+        if(dp[i][target]!=-1) return dp[i][target];
+        int skip=coins(i+1,coins,target,dp);
+        if(target-coins[i]<0) return dp[i][target]=skip;
+        int pick=coins(i,coins,target-coins[i],dp);
+        return dp[i][target]=pick+skip;
+    }
+    public int change(int amount, int[] coins) {
+        int n=coins.length;
+        int[][]dp= new int[n][amount+1];
+        for(int i=0;i<n;i++)
+        {
+            Arrays.fill(dp[i],-1);
+        }
+        return coins(0,coins,amount,dp);
+    }
+}
 //Solved ques :
 Questions Solved:
 Leetcode 509
@@ -1416,3 +1443,4 @@ Leetcode 931
 chocolate pickup
 perfect sum
 partition with given difference 
+Leetcode 518
