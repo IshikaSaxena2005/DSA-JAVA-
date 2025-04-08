@@ -1430,6 +1430,51 @@ class Solution {
         return price(n,price,dp);
     }
 }
+
+//longest common substring
+class Solution {
+     int maxLen=0;
+    public int lcs(int i,int j,StringBuilder a, StringBuilder b,int dp[][])
+    {
+        if(i<0||j<0) return 0;
+       
+        if(dp[i][j]!=-1) return dp[i][j];
+        if(a.charAt(i)==b.charAt(j))
+        {
+            dp[i][j]=1+lcs(i-1,j-1,a,b,dp);
+            maxLen=Math.max(maxLen,dp[i][j]);
+            return dp[i][j];
+        }
+        else
+        {
+         dp[i][j]=0;
+         return 0;
+        }
+        
+    }
+    public int longestCommonSubstr(String s1, String s2) {
+        // code here
+        StringBuilder a = new StringBuilder(s1);
+        StringBuilder b= new StringBuilder(s2);
+        int n=s1.length();
+        int m=s2.length();
+        int [][]dp= new int[n][m];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+        
+         for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                lcs(i, j, a, b, dp);
+
+        return maxLen;
+        
+    }
+}
 //Solved ques :
 Questions Solved:
 Leetcode 509
@@ -1471,3 +1516,4 @@ perfect sum
 partition with given difference 
 Leetcode 518
 Rod cut
+Longest common substring
