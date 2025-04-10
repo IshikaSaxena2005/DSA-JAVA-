@@ -446,3 +446,86 @@ class Solution {
         return same(root.left,root.right);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public void bfs(int start,List<List<int>> adj,bool[]visited)
+    {
+        Queue<int> q= new Queue<int>();
+        q.Enqueue(start);
+        visited[start]=true;
+        while(q.size()>0)
+            {
+            int front=q.Dequeue();
+                foreach(int ele in adj[front]) //list ke andr ke ele traverse krne ke liye
+                    {
+                            if(!visited[ele])
+                            {
+                                q.Enqueue(ele);
+                            }
+                    }
+                
+            }
+    } 
+
+pubic void dfs(int start,List<List<int>> adj,bool[]visited)
+    {
+        visited[start]=true;
+        for(int ele in adj[start])
+            {
+                if(!visited[start])
+                {
+                    dfs(ele,adj,visited);
+                }
+            }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
