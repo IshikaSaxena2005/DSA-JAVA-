@@ -8,6 +8,9 @@ this.val= val;
 }
 }
 
+
+//INSERTION
+
 void insertAtEnd(int val)
 {
 Node temp= new Node(val);
@@ -52,3 +55,80 @@ System.out.print(temp.val+" ");
 temp=temp.next;
 }
 }
+
+void set(int idx,int val) throws Error
+{
+if(idx==size-1)
+{
+tail.val=val;
+}
+if(idx>=size ||idx<0)
+{throw new Error("Error");}
+Node temp=head;
+for(int i=1;i<=idx;i++)
+{
+temp=temp.next;
+}
+temp.val=val;
+}
+
+void get(int idx)throws Error
+{
+if(idx==size-1) return tail.val;
+if(idx>=size||idx<0)
+{throw new Error("Error");}
+Node temp=head;
+for(int i-1;i<=idx;i++)
+{
+temp=temp.next;
+}
+return temp.val;
+}
+
+//DELETION
+
+void deleteAtBegin() throws Error
+{
+if(head==null) throws new Error("List is Empty");
+head=head.next;
+size--;
+}
+
+void deleteAtIndex() throws Error
+{
+if(head==null) throw new Error("List is Empty");
+if(idx<0 ||idx>=size) throw new Error("Invalid Index");
+
+Node temp=head;
+for(int i=0;i<idx;i++)
+{
+temp=temp.next;
+}
+temp.next=temp.next.next;
+size--;
+
+}
+
+
+public void deleteAtTail() {
+    if (head == null) {
+        System.out.println("List is empty, nothing to delete.");
+        return;
+    }
+
+    if (head == tail) {
+        // Only one node
+        head = null;
+        tail = null;
+        return;
+    }
+
+    Node curr = head;
+    while (curr.next != tail) {
+        curr = curr.next;
+    }
+
+    curr.next = null;
+    tail = curr;
+}
+
