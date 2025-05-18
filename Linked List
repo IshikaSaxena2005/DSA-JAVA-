@@ -1,0 +1,54 @@
+class Node
+{
+int val;
+Node next;
+Node(int val)
+{
+this.val= val;
+}
+}
+
+void insertAtEnd(int val)
+{
+Node temp= new Node(val);
+if(head==null) head=tail=temp;
+else
+{
+tail.next=temp;
+tail=temp;
+}
+}
+
+void insertInMiddle(int val, int idx) {
+        Node temp = new Node(val);
+
+        if (idx == 0) {
+            temp.next = head;
+            head = temp;
+            if (tail == null) {
+                tail = temp;
+            }
+            return;
+        }
+
+
+void insertInbegining(Node temp)
+{
+if(head==null) head=tail=temp;
+else
+{
+temp.next=head;
+head=temp;
+}
+
+}
+
+void display(Node head)
+{
+Node temp=head;
+while(temp!=null)
+{
+System.out.print(temp.val+" ");
+temp=temp.next;
+}
+}
