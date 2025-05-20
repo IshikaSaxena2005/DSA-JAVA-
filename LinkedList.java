@@ -345,7 +345,52 @@ class Solution {
     }
 }
 
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        ListNode dummya= new ListNode(100);
+        ListNode dummyb= new ListNode(100);
+        ListNode tempa=dummya;
+        ListNode tempb=dummyb;
+        ListNode temp=head;
+        int index=1;
+        while(temp!=null)
+        {
+            if((index%2)!=0)
+            {
+                tempa.next=temp;
+                temp=temp.next;
+                tempa=tempa.next;
+                index++;
+            }
+            else
+            {
+                tempb.next=temp;
+                tempb=tempb.next;
+                temp=temp.next;
+                index++;
+            }
+        }
+        tempb.next=null;
+        dummya=dummya.next;
+        dummyb=dummyb.next;
+        if(dummya==null) return dummyb;
+        tempa.next=dummyb;
+        return dummya;
+    }
+}
+
 //Leetcode 21
 //Leetocode 148
 //Leetcode 23
 //Leetcode 86
+//Leetcode 328
