@@ -299,6 +299,53 @@ class Solution {
        return list.get(0);
     }
 }
+
+//Partition Linked List
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode partition(ListNode head, int x) {
+        ListNode dummya=new ListNode(100);
+        ListNode dummyb= new ListNode(100);
+        ListNode tempa= dummya;
+        ListNode tempb= dummyb;
+        ListNode temp=head;
+        while(temp!=null)
+        {
+            if(temp.val<x)
+            {
+                tempa.next=temp;
+                temp=temp.next;
+                tempa=tempa.next;
+            }
+            else
+            {
+                tempb.next=temp;
+                temp=temp.next;
+                tempb=tempb.next;
+            }
+           
+
+        }
+         tempb.next=null;
+        dummya=dummya.next;
+        dummyb=dummyb.next;
+        if(dummya==null) return dummyb;
+         tempa.next=dummyb;
+        
+        return dummya;
+    }
+}
+
 //Leetcode 21
 //Leetocode 148
 //Leetcode 23
+//Leetcode 86
