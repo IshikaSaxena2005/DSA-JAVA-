@@ -260,5 +260,45 @@ class Solution {
     }
 }
 
+//merge k soted Linked List
+class Solution {
+    public ListNode mergeTwo(ListNode temp1,ListNode temp2)
+    {
+        ListNode dummy= new ListNode(100);
+        ListNode temp= dummy;
+        while(temp1!=null && temp2!=null)
+        {
+            if(temp1.val<=temp2.val)
+            {
+                temp.next=temp1;
+                temp1=temp1.next;
+            }
+            else
+            {
+                temp.next=temp2;
+                temp2=temp2.next;
+            }
+            temp=temp.next;
+        }
+        if(temp1==null) temp.next=temp2;
+        else temp.next=temp1;
+        return dummy.next;
+    }
+    public ListNode mergeKLists(ListNode[] lists) {
+       if(lists==null ||lists.length==0) return null;
+       List<ListNode> list= new ArrayList<>(Arrays.asList(lists));
+       while(list.size()>1)
+       {
+        int size=list.size();
+        ListNode l1= list.remove(size-1);
+        ListNode l2= list.remove(size-2);
+        ListNode merge= mergeTwo(l1,l2);
+        list.add(merge);
+       }
+
+       return list.get(0);
+    }
+}
 //Leetcode 21
 //Leetocode 148
+//Leetcode 23
