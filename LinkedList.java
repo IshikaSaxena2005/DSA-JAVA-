@@ -514,7 +514,55 @@ class Solution {
         }
         return true;
       }
-//Leetcode 21
+
+    //Reverse lined list 2
+    class Solution {
+    public ListNode reverse(ListNode head)
+    {
+        ListNode curr=head;
+        ListNode prev=null;
+        ListNode next=null;
+        while(curr!=null)
+        {
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if(head==null || left==right) return head;
+        ListNode temp=head;
+        ListNode a=null;
+        ListNode b=null;
+        ListNode c= null;
+        ListNode d= null;
+        int pos=1;
+        while(temp!=null)
+        {
+            if(pos==left-1) a=temp;
+            if(pos==left) b=temp;
+            if(pos==right) c= temp;
+            if(pos==right+1) d= temp;
+            pos++;
+            temp=temp.next;
+
+        }
+        if(a!=null)a.next=null; //if a is already on the first nod
+        if(c!=null)c.next=null;
+        reverse(b);
+        if(a!=null)a.next=c;
+        if(b!=null)b.next=d;
+        if(a==null )  return c;
+        return head;
+    
+
+    }
+}
+
+    
+//Leetcode 21    
 //Leetocode 148
 //Leetcode 23
 //Leetcode 86
@@ -522,3 +570,4 @@ class Solution {
 //Leetcode 206
 //Leetcode 24
 //Leetcode 234
+//Leetcode 92
