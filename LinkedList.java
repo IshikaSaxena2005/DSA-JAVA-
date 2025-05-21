@@ -426,9 +426,26 @@ class Solution {
     }
 }
 
+//reverse LL
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode curr=head;
+        ListNode prev=null;
+        ListNode next=null;
+        while(curr!=null)
+        {
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+}
 //Leetcode 21
 //Leetocode 148
 //Leetcode 23
 //Leetcode 86
 //Leetcode 328
+//Leetcode 206
 //Leetcode 24
