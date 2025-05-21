@@ -442,6 +442,34 @@ class Solution {
         return prev;
     }
 }
+
+//palindrome
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        //use of extra space
+        List<Integer> list= new ArrayList<>();
+        ListNode temp= head;
+        while(temp!=null)
+        {
+            list.add(temp.val);
+            temp=temp.next;
+
+        }
+        int i=0;
+        int j=list.size()-1;
+        while(i<j)
+        {
+            if(!list.get(i).equals(list.get(j)))
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+
+    }
+}   
 //Leetcode 21
 //Leetocode 148
 //Leetcode 23
@@ -449,3 +477,4 @@ class Solution {
 //Leetcode 328
 //Leetcode 206
 //Leetcode 24
+//Leetcode 234
