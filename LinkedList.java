@@ -14,7 +14,6 @@ class Solution {
     }
 }
 
-//middle  of LL
 
 class Solution {
     // //2 pass solution TC:O(n) SC:O(1)
