@@ -103,7 +103,7 @@ if(root==null) return 0;
 //becaz there is a possiblity that the tree might have only one child node
 return 1+ Math.max(levels(root.left),levels(root.right));
 }
-
+//ekk level is already treated as node
 TRAVERSALS:
 1) BFS TRAVERSALS
 Preoder:Root Left Right
