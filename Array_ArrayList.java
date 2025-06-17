@@ -156,6 +156,37 @@ class Solution {
 }
 
 
+//REVERSE ARRAY
+
+public int[]reverse(int []arr)
+  {
+    for(int i=0;i<(arr.length)/2;i++)
+      {
+        int j=arr.length-i-1;
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+      }
+  return arr;
+  }
+
+//2 pointer approach
+public int[]reverse(int[]arr)
+  {
+  int i=0;
+  int j=arr.length-1;
+  while(i<=j)
+    {
+      int temp=arr[i];
+      arr[i]=arr[j];
+      arr[j]=temp;
+      i++;
+      j--;
+        
+    }
+  return arr;
+  }
+
 
 
 
