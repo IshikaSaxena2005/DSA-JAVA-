@@ -190,6 +190,46 @@ public int[]reverse(int[]arr)
 
 
 
+class Solution {
+    private int gcd(int a,int b)
+    {
+        while(b!=0)
+        {
+            int temp=b;
+            b=a%b;
+            a=temp;
+        }
+        return a;
+    }
+    public long makeSubKSumEqual(int[] arr, int k) {
+        int n=arr.length;
+        int g=gcd(n,k);
+        
+        long totalOps=0;
+        for(int i=0;i<g;i++)
+        {
+            ArrayList<Integer> group= new ArrayList<>();
+            int j=i;
+            do
+            {
+                group.add(arr[j]);
+                j=(j+k)%n;
+            }
+            while(j!=i);
+                   Collections.sort(group);
+                    int median= group.get(group.size()/2);
+        for(int val: group)
+        {
+            totalOps+=Math.abs(val-median);
+        }
+
+        }
+ 
+       
+    return totalOps;
+    }
+
+}
 
 
 
