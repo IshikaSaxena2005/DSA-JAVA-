@@ -271,7 +271,35 @@ class Solution {
 }
 
 
+//Next greatest element
+int[]arr={10,34,77,2,30};
+int n=arr.length;
+int[]ans=new int[n+1];
+ans[n-1]=-1;
+for(int i=0;i<n-1;i++)
+  {
+    int mx=Integer.MIN_VALUE;
+    //aage ke elements
+    for(int j=i+1;j<n;j++)
+      {
+        mx=Integer.max(mx,arr[j]);
+      }
+    ans[i]=mx;
+  }
+return mx; //BRUTE FORCE
 
+//OPTIMIZED:
+//nge ==>last element
+//ans[n-1]=-1
+//nge=arr[n-1];
+//nge will be updatd for each iterartion
+arr[n-1]=-1;
+nge=arr[n-1];
+ for(int i=n-2;i>=0;i--)
+   {
+     ans[i]=nge;
+     nge=Math.max(nge,arr[i]);
+   }
 
 
 
