@@ -20,6 +20,7 @@ for(int i=0;i<size;i++)
   }
 return 0;
 
+
 //second largest ele of array:
 int mx=Integer.MIN_VALUE;
 for(int i=0;i<n;i++)
