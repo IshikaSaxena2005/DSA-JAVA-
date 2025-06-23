@@ -68,7 +68,7 @@ for(int i=1;i<Arr.length;i++)
 
 
 
-//marking the rows anc cols   TC:O(m*n) SC:O(n+m)
+//marking the rows and cols   TC:O(m*n) SC:O(n+m)
 class Solution {
     public void setZeroes(int[][] matrix) {
         int m=matrix.length; //row
@@ -114,7 +114,7 @@ class Solution {
                 firstColZero = true;
             }
         }
-
+//after marking the first row and col use it to mark the zeros
         for (int j = 0; j < n; j++) {
             if (matrix[0][j] == 0) {
                 firstRowZero = true;
