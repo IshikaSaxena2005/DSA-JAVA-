@@ -6,6 +6,7 @@ int size=sc.nextInt();
 System.out.print("Enter the elements");
 int[]arr= new int[size];
 for(int i=0;i<size;i++)
+  //size is the length of te array
   {
     arr[i]=sc.nextInt();
   }
