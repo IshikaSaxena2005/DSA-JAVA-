@@ -12,6 +12,7 @@ class Solution {
 }
 
 //Leetcode 700
+
 class Solution {
 public TreeNode searchBST(TreeNode root, int val) {
         if (root == null || root.val == val) {
