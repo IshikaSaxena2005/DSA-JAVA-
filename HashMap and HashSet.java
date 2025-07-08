@@ -17,6 +17,7 @@ class Solution {
             set.add(nums[i]);
             set.add(reverse(nums[i]));
         }
+        
         return set.size();
     }
 }
