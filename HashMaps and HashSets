@@ -1,4 +1,4 @@
-HASHSET
+ggHASHSET
 -type of datastructure
 -TC:O(1):searching
 
@@ -36,9 +36,7 @@ set.add(30); //not possible
 set.clear();  //empty set
 //in hashset, occurance of any element is 1
 //no element is repeated in set
-
 HashSet<String> srt= new HashSet<>();
-
 find max reverse pairs:
 make a set
 make a variable count
