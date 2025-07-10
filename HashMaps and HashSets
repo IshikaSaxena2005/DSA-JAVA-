@@ -26,6 +26,7 @@ for(int i=0;i<arr.length;i++)
   System.out.print(arr[i]+"");
 }}}
 
+
 For iteration in Hashset: using for each loop
 for(int ele:set)
 {
@@ -43,6 +44,7 @@ make a variable count
 iterate in words see for each rev=reverse(words[i])
 if(set.contains(rev)->count++
 else -> set.add(words[i])
+
 
 for reverseing make a StringBuilder
 sb.reverse()
