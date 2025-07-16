@@ -32,6 +32,8 @@ class Solution {
     }    
 }
 
+//list and binary search tree and the 
+
 
 //Leetcode 100
 class Solution {
