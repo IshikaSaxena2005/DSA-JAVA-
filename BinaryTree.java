@@ -71,6 +71,13 @@ class Solution
     }
   }
 
+//array 
+//linked list
+//priority queue
+//stack
+//arraylist and arrays,  arrays are static size , array list have dynamic size
+
+//check the 
 // Leetcode 236
 /**
  * Definition for a binary tree node.
