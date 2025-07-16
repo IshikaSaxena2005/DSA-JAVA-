@@ -14,8 +14,6 @@
  *     }
  * }
  */
-
-
 class Solution {
     public TreeNode invert(TreeNode root)
     {
