@@ -63,6 +63,7 @@ return product(root.left)*product(root.right);
 }
 }
 
+
 Find the node with maximum value:
 //max can be either root node,root.left,rot.right
 private staic max(Node root)
