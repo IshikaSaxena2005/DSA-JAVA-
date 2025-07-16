@@ -48,6 +48,8 @@ if(root.val==0) return 0;
 return root.val* product(root.left)* product(root.right);
 }
 
+//array list and array
+
 Find product of non zero elements of node
 private static int product(Node root)
 {
