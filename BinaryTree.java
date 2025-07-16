@@ -14,8 +14,6 @@
  *     }
  * }
  */
-
-
 class Solution {
     public TreeNode invert(TreeNode root)
     {
@@ -516,21 +514,3 @@ pubic void dfs(int start,List<List<int>> adj,bool[]visited)
                 }
             }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
