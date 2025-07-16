@@ -101,11 +101,6 @@ class Solution {
     }
 }
 
-
-
-
-
-
 //Leetcode 102
 class Solution {
     private int levels(TreeNode root)
