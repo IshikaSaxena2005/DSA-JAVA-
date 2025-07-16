@@ -29,10 +29,9 @@ class Solution {
     public TreeNode invertTree(TreeNode root) {
         invert(root);
         return root;
-        
-    }
-    
+    }    
 }
+
 
 //Leetcode 100
 class Solution {
