@@ -45,7 +45,7 @@ iterate in words see for each rev=reverse(words[i])
 if(set.contains(rev)->count++
 else -> set.add(words[i])
 
-
+//the hashma
 for reverseing make a StringBuilder
 sb.reverse()
 return sb.toString()
