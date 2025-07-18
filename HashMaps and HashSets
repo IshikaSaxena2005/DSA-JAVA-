@@ -53,7 +53,7 @@ return sb.toString()
 HASHMAP:
 -type of data structure
 -insert,remove,search->TC:O(1)
--pairs are inserted
+
 
 import java.util.HashMap;
 public class maps
