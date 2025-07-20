@@ -42,8 +42,6 @@ public int add(int val)
     reurn arr.get(arr.size()-k);
 }
 }
-
-
 2)LAST STONE WEIGHT:
 -at each step 2 heaviest stones are taken ans smashed together
 -if x==y >>both stones destroyed
