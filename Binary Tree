@@ -15,6 +15,7 @@ Creation of Tree:
 this.val=val;
 }
 }
+
 public class basic
 {
  Node a= new Node(1);
